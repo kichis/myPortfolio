@@ -16,6 +16,7 @@
 </template>
 
 <script>
+
 // import HelloWorld from './components/HelloWorld.vue'
 import myheader from './components/myheader'
 
@@ -53,15 +54,23 @@ export default {
   }
 
 }
+
 </script>
 
 <style>
 #app {
+  /* background-color: #fffcf5; */
+  /* background-color: #f5f5f5; */
+  /* background-color: #f4f5f7; */
+
+  /* background-color: #f2f2f2; */
+  background-color: #f9f9f9;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: #303030;
   margin-top: 60px;
 }
 </style>
