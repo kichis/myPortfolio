@@ -10,4 +10,3 @@ app.mount('#app')
 //     // ここに各種設定
 
 // }).mount('#app');
-

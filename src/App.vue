@@ -1,6 +1,10 @@
 <template>
   <myheader></myheader>
   <home></home>
+  <aboutme></aboutme>
+  <skills></skills>
+  <works></works>
+  <contact></contact>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div></div>
@@ -21,6 +25,10 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import myheader from './components/myheader'
 import home from './components/home'
+import aboutme from './components/aboutme'
+import skills from './components/skills'
+import works from './components/works'
+import contact from './components/contact'
 
 
 export default {
@@ -30,7 +38,11 @@ export default {
   // }
   components: { 
     myheader,
-    home
+    home,
+    aboutme,
+    skills,
+    works,
+    contact
   },
 
   data(){

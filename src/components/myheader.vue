@@ -9,10 +9,10 @@
       <ul class="navbar-nav mx-auto">
         <!-- ※ポイント :active -->
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">AboutMe</a>
+          <a class="nav-link" href="#aboutme">AboutMe</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Skills</a>
