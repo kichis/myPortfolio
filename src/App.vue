@@ -1,8 +1,9 @@
 <template>
   <myheader></myheader>
-
-  <img alt="Vue logo" src="./assets/logo.png">
+  <home></home>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <div></div>
     <div>
     <p v-if="msg.length>0">
       {{msg}}
@@ -19,6 +20,8 @@
 
 // import HelloWorld from './components/HelloWorld.vue'
 import myheader from './components/myheader'
+import home from './components/home'
+
 
 export default {
   // name: 'App',
@@ -26,7 +29,8 @@ export default {
   //   // HelloWorld
   // }
   components: { 
-    myheader 
+    myheader,
+    home
   },
 
   data(){
