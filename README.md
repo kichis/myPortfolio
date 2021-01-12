@@ -40,3 +40,8 @@ https://www.vuemastery.com/blog/vue-router-a-tutorial-for-vue-3/
 createWebHistory():ブラウザのルーティング設定？をHashからHistoryAPIに変更する（<-ここがv2とちがうらしい）
 
 routerに使用している、src/router/index.js内のパスは最初に＠をつけなくてはいけないようだ
+
+Vueコンポーネント内のJS実装から遷移する場合は this.$router.push('/'); のように書く
+URLのパラメーターはVueコンポーネント側ではpropsで受け取れる
+
+ Internet Explorer 9以前では、カルーセルはサポートされていません

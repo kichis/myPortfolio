@@ -5,7 +5,7 @@
 
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <div></div>
+  <!-- <div></div>
     <div>
     <p v-if="msg.length>0">
       {{msg}}
@@ -15,7 +15,7 @@
     </p>
     <input type="text" v-model="msg">
     <button @click="clear()">clear</button>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -86,18 +86,19 @@ export default {
 
 <style>
 #app {
-  /* background-color: #fffcf5; */
-  /* background-color: #f5f5f5; */
-  /* background-color: #f4f5f7; */
-
-  /* background-color: #f2f2f2; */
+  
   background-color: #f9f9f9;
+  /* background-color: #f4f5f7; */
+  /* うすいクリーム色 */
+  /* background-color: #fffcf5; */
+
+  height: 100vh;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50; */
   color: #303030;
-  margin-top: 60px;
 }
 </style>
