@@ -1,10 +1,8 @@
 <template>
   <myheader></myheader>
-  <home></home>
-  <aboutme></aboutme>
-  <skills></skills>
-  <works></works>
-  <contact></contact>
+
+  <router-view></router-view>
+
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div></div>
@@ -23,26 +21,12 @@
 <script>
 
 // import HelloWorld from './components/HelloWorld.vue'
-import myheader from './components/myheader'
-import home from './components/home'
-import aboutme from './components/aboutme'
-import skills from './components/skills'
-import works from './components/works'
-import contact from './components/contact'
 
+import myheader from './components/myheader'
 
 export default {
-  // name: 'App',
-  // components: {
-  //   // HelloWorld
-  // }
   components: { 
     myheader,
-    home,
-    aboutme,
-    skills,
-    works,
-    contact
   },
 
   data(){
@@ -70,6 +54,33 @@ export default {
   }
 
 }
+
+// const NotFoundComponent = { template: '<p>Page not found</p>' }
+// const HomeComponent = { template: '<p>Home page</p>' }
+// const AboutComponent = { template: '<p>About page</p>' }
+
+// const routes = {
+//     '/': HomeComponent,
+//     '/about': AboutComponent
+// }
+
+// const SimpleRouter = {
+//     data: () => ({
+//         currentRoute: window.location.pathname
+//     }),
+
+//     computed: {
+//         CurrentComponent() {
+//             return routes[this.currentRoute] || NotFoundComponent
+//         }
+//     },
+
+//     render() {
+//         return createApp.createApp().h(this.CurrentComponent)
+//     }
+// }
+
+// createApp(SimpleRouter).mount('#app')
 
 </script>
 

@@ -9,19 +9,19 @@
       <ul class="navbar-nav mx-auto">
         <!-- ※ポイント :active -->
         <li class="nav-item active">
-          <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+          <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#aboutme">AboutMe</a>
+          <router-link to="/about" class="nav-link">About</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Skills</a>
+          <router-link to="/skills" class="nav-link">Skills</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Works</a>
+          <router-link to="/works" class="nav-link">Works</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact & SNS</a>
+          <router-link to="/contact" class="nav-link">Contact & SNS</router-link>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
