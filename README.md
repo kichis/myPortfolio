@@ -45,3 +45,5 @@ Vueコンポーネント内のJS実装から遷移する場合は this.$router.p
 URLのパラメーターはVueコンポーネント側ではpropsで受け取れる
 
  Internet Explorer 9以前では、カルーセルはサポートされていません
+
+ vue.jsとjQueryは共存させない方が良い
