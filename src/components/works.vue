@@ -2,24 +2,32 @@
     <h2>Works</h2>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-8 bg-warning">
             <h5>■WebApps</h5>
-            <div class="card" style="width: 18rem;">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary" target="_blank">アプリを開く&nbsp;<i class="fas fa-external-link-alt"></i></a>
+            <div class="">
+                <div class="card" style="width: 18rem;">
+                    <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
+                    <img src="" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary" target="_blank">アプリを開く&nbsp;<i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-4 bg-danger">
             <h5>■AR</h5>
-        </div>
-
-        <div class="col-4">
             <h5>■blender</h5>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data:function(){
+        webApps :[]
+    }
+}
+</script>
