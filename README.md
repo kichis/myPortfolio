@@ -47,3 +47,24 @@ URLのパラメーターはVueコンポーネント側ではpropsで受け取れ
  Internet Explorer 9以前では、カルーセルはサポートされていません
 
  vue.jsとjQueryは共存させない方が良い
+
+## 学んだこと
+__Vue.js__
+- vue cli webpackを使っている場合、  
+  imgタグsrcにベタ打ちした画像パスはbase64でエンコードして出力される。  
+  v-bindを使うと、base64エンコードではなくそのままの文字列が出力されるので、画像は表示されない。
+  -> require(画像パス) とする  
+  (これはベタ打ちの場合に、裏側でなされている処理と同じ)  
+  (○)画像が見つからなかった場合、エラーになる
+
+- {{ プロパティ名 }} : vueのdataプロパティを出力
+- v-for="ele in eles" :key="ele"  
+ : 同一のフォームに、一定種類のデータをあるだけ描画
+- v-on:イベント="関数(引数)" : イベントハンドラ
+- v-bind : 属性にvue変数を出力するとき
+- v-if : vue変数のbool値で要素を描画する/しない
+- v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
+
+- 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
+- export default外のJS変数をexport default内で使う場合は、data()で宣言？する  
+  プロパティ名 : JS変数名
