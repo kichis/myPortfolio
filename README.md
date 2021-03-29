@@ -68,3 +68,8 @@ __Vue.js__
 - 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
 - export default外のJS変数をexport default内で使う場合は、data()で宣言？する  
   プロパティ名 : JS変数名
+
+  memo
+
+- いろんなAPI
+- test code
