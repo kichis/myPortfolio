@@ -50,8 +50,8 @@
                             <template v-if="webcard.isMySQL">
                                 <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="mySQL" width="60" height="40" class="mt-2">
                             </template>
-
                         </div>
+                        
                         <div class="d-flex justify-content-around pt-2">
                             <!-- ボタンの色は後ほど要検討 -->
                             <!-- ボタンを目立つように（影とかつける）方がいいかも -->
@@ -99,8 +99,50 @@
 
         <!-- AR & blender area -->
         <div class="col-4 bg-danger">
-            <h5>■AR</h5>
-            <h5>■blender</h5>
+            <h5>■AR & blender</h5>
+            
+            <div class="row justify-content-around">
+                <!-- AR card -->
+                <div class="card col-12 col-lg-10 col-xl-8 mt-5 px-0" 
+                    style="width: 18rem;" 
+                    v-on:mouseover="showDetail($event, 4)" 
+                    v-on:mouseout="hideDetail"
+                >
+                    <video src="../assets/kitsune_moviex2.mp4" controls height="250"></video>
+
+                    <div class="card-body">
+                        <h5 class="card-title">『きつねの窓』</h5>
+                        <p class="card-text">
+                            iPhoneで計測した歩数に応じて、妖怪がARで出現するアプリ。<br>
+                            (上の埋め込み動画が再生できない場合は、デモ動画ボタンでも同じ動画が見られます)
+                        </p>
+                        <div class="py-2">
+                            <img src="../assets/unity-tab-square-black.png" alt="unity" width="40" height="40">
+                            <img src="../assets/vuforia.jpg" alt="vuforia" width="60" height="40">
+                            <img src="https://download.blender.org/branding/blender_logo.png" alt="blender" width="130" height="35">
+                            <img src="../assets/csharp.png" alt="csharp" width="40" height="40">
+                        </div>
+                        <!-- ボタンの色は後ほど要検討 -->
+                        <!-- ボタンを目立つように（影とかつける）方がいいかも -->
+                        <a href="https://drive.google.com/file/d/1tz7HEZsOyYyCQqSy4WSpRNlmsgip-Vf_/view?usp=sharing" class="btn linkToApp mt-2" target="_blank">
+                            デモ動画 &nbsp;<i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- blender card -->
+                <div class="card col-12 col-lg-10 col-xl-8 mt-5 px-0" 
+                    style="width: 18rem;" 
+                    v-for="othercard in othercards" :key="othercard.id" 
+                >
+                    <img :src="othercard.img" alt="{{ othercard.tittle }}" class="bd-placeholder-img card-img-top border-bottom m-0" width="100%" height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ othercard.title }}</h5>
+                        <p class="card-text"><span v-html="othercard.text"></span></p>
+                        <img src="https://download.blender.org/branding/blender_logo.png" alt="blender" width="130" height="35">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="detail_area"
@@ -131,9 +173,22 @@
 
 <script>
 const detail = document.querySelector('#detail_area');
-const getPositionOfPage = (eObject, direction/* =topかleftのみ */) => {
-    let result = (direction == "top") ? eObject.target.closest(".card").getBoundingClientRect().top + window.pageYOffset
-                                      : eObject.target.closest(".card").getBoundingClientRect().left + window.pageXOffset + 350 // 350 = cardのwidth分+間隔
+const getPositionOfPage = (eObject, direction) => {
+    let result
+    switch(direction){
+        case "top":
+            result = eObject.target.closest(".card").getBoundingClientRect().top + window.pageYOffset;
+            break;
+        case "right":
+            result = eObject.target.closest(".card").getBoundingClientRect().right + window.pageXOffset + 50
+            break;
+        case "left":
+            // 450 = cardのwidth分+間隔
+            result = eObject.target.closest(".card").getBoundingClientRect().left + window.pageXOffset - 450
+            break;
+        default:
+            break;
+    }
     return add_px(result)
 }
 const add_px = val => val + "px";
@@ -213,7 +268,21 @@ export default {
                  isMySQL : true },  
             ],
 
+            othercards : [
+                {id : 0,
+                 title : '木の葉',
+                 text : '',
+                 img : require('../assets/leaf.png'),
+                },
+                {id : 1,
+                 title : 'ぬっぺふほふ',
+                 text : '『きつねの窓』のために製作した妖怪の一つです',
+                 img : require('../assets/nuppe.png'),
+                },
+            ],
+
             details :[
+                // id:0
                 {point : "<p>1. フレームワークを使わずにJavaScriptでSPAを実装</p>"+
                         "<p>2. 回答途中のユーザのイレギュラーな動き(リロード、ブラウザの戻るボタン押下、前の問題に戻る、など)があっても、結果判定の仕組みや表示コンポーネントが崩れないように調整</p>"+
                         "<p>3. スマホ、タブレット、PCへのレスポンシブ対応</p>"+
@@ -223,6 +292,7 @@ export default {
                  'また、SPAのことを調べた際、(フレームワークによって実現するものだと思っていたSPAが)Vanilla JSでも書ける！ということを知って興味が湧き、表示切り替えはVanilla JSでのSPAで実装しています。<br>'+
                  '</p>'
                 },
+                // id:1
                 {point : 
                 "<p>1. Tailwindの既定の色の豊富さを活かした、緑を基調とする統一感のあるデザイン<br>"+
                    "2. 正解・不正解のアクションを”お寺”というテーマに合わせたものに</p>",
@@ -230,14 +300,26 @@ export default {
                  '<p>仏教は日本の文化や習慣に大きな影響を与えていますが、名前を知っているような有名なお寺であってもどこの宗派かということまでは知らないな、という気付きがあり作成しました。<br>'+
                  'ぜひ、正解・不正解両方のアクションをご覧ください</p>'
                 },
+                // id:2
                 {point : 
                 "<p>1. 東海道五十三次の道のりが地形からも感じられるよう、航空写真の地図を採用<br>"+
                    "2. 宿場イメージとして歌川広重の浮世絵を掲載</p>",
                  reason : 
                  '<p>Bing Map APIを使用したアプリを作るにあたり、地図といえば旅、旅といえば東海道、という着想から作成しました。<br>'+
                  '東海道に沿うように、11の宿場は地域的に満遍なくピックアップ。歌川広重の描いた活きいきとした浮世絵を載せることで、ユーザにより宿場の雰囲気を味ってもらえるようになっています。</p>'},
+                // id:3
                 {point : 
                 "<p>1. ユーザが投稿を読んだ恐怖を伝えられる「怖！」ボタン<br>"+
+                   "2. 特別ページに遷移する隠しリンク(copyrightsのあたり)<br>"+
+                   "3. ブラックリストユーザのログアウト時に起きるドッキリイベント<br>"+
+                   "4. 和風ホラーの雰囲気に浸れるデザイン</p>",
+                 reason : 
+                 '<p>手軽に怖い話を読めたり書けたりしつつ、サイト自体に面白い仕掛けがある怪談ウェブサイトがあるといいな、という考えから作りました。<br>'+
+                 'ブラックリストユーザでのログイン＆ログアウトはぜひお試しください！<br>'+
+                 'また、管理者用画面では、意図しない編集操作を防止するため、レコードにチェックを入れることでそのレコードが編集可能となるようにしています。</p>'},
+                // id:4
+                {point : 
+                "<p>1. きつねのまど<br>"+
                    "2. 特別ページに遷移する隠しリンク(copyrightsのあたり)<br>"+
                    "3. ブラックリストユーザのログアウト時に起きるドッキリイベント<br>"+
                    "4. 和風ホラーの雰囲気に浸れるデザイン</p>",
@@ -253,14 +335,13 @@ export default {
     methods:{
         showDetail($event, id){
             this.detailTop = getPositionOfPage($event, "top")
-            this.detailLeft = getPositionOfPage($event, "left")         
-            // console.log(this.detailLeft)
+            let horizontalDirect = (id == 4) ? "left" : "right"
+            this.detailLeft = getPositionOfPage($event, horizontalDirect)         
             this.pointText = this.details[id].point
             this.reasonText = this.details[id].reason
             this.detailDisplay = "block"
         },
         hideDetail(){
-            // console.log("out")
             this.detailDisplay = "none"
         }
     }
