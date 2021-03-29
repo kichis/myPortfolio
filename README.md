@@ -58,18 +58,38 @@ __Vue.js__
   (○)画像が見つからなかった場合、エラーになる
 
 - {{ プロパティ名 }} : vueのdataプロパティを出力
-- v-for="ele in eles" :key="ele"  
- : 同一のフォームに、一定種類のデータをあるだけ描画
+
+
+
+__v- ディレクティブ__
+- v-for="ele in eles"  :key="ele.id"(idでなくても区別できればok)
+ : 同一のフォームに、一定種類のデータをあるだけ描画。
+   keyは、一部の要素が削除された場合などにも、DOMに配置されているデータとindex#の引き当てができるようにするためのもの。
 - v-on:イベント="関数(引数)" : イベントハンドラ
-- v-bind : 属性にvue変数を出力するとき
-- v-if : vue変数のbool値で要素を描画する/しない
+- v-bind : 属性にdataプロパティを出力するとき
+- v-if : 与えた式の真偽で要素を描画する/しない
 - v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
 
+
 - 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
-- export default外のJS変数をexport default内で使う場合は、data()で宣言？する  
+- export default外のJS変数をexport default内で使う場合は、dataプロパティとして宣言？する。  
   プロパティ名 : JS変数名
 
-  memo
+__export default内のオプション__
+- filters : dataプロパティの値が出力される前に加工する。  
+コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
+=> Vue3で廃止！！
+
+
+__JS__
+- `element.closest(".card")` // elementの祖先要素のうち、class="card"のものを探す
+- `element.getBoundingClientRect()` // elementの「ビューポート(画面内)」における位置を取得
+- `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
+- `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
+
+
+
+
 
 - いろんなAPI
 - test code
@@ -86,3 +106,10 @@ edit_users.php バリデーションに引っ掛かった場合、入力した�
 処理完了後のコメント表示
 やってみたいこと
 ソルトを使ったpassw保存や、ブラウザ側でハッシュ化するpassw保存方法
+
+v-on : eventを使う時、
+- event用のdataプロパティを作成し、method内でそのプロパティに代入する
+eventだけであれば、function(event)
+他の引数もあればfunction($event, 他の引数)
+
+

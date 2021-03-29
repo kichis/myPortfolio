@@ -9,15 +9,12 @@
 
             <div class="row justify-content-around">
                 <!-- d-inline-flex -->
-                <div class="card col-8 col-md-6 col-lg-5 col-xl-4 mx-3 px-0" style="width: 18rem;" 
-                    v-for="webcard in webcards" :key="webcard" 
-                    v-on:mouseover="showDetail(webcard.id)" 
+                <div class="card col-8 col-md-6 col-lg-5 col-xl-4 mx-3 mt-5 px-0" style="width: 18rem;" 
+                    v-for="webcard in webcards" :key="webcard.id" 
+                    v-on:mouseover="showDetail($event, webcard.id)" 
                     v-on:mouseout="hideDetail"
                 >
-                    <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
-                    <!-- <div class="p"> -->
                     <img :src="webcard.img" alt="{{ webcard.tittle }}" class="bd-placeholder-img card-img-top border-bottom m-0" width="100%" height="250">
-                    <!-- </div> -->
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ webcard.title }}</h5>
@@ -104,13 +101,12 @@
         <div class="col-4 bg-danger">
             <h5>■AR</h5>
             <h5>■blender</h5>
+        </div>
 
-
-                        <div id="detail_area"
-                v-bind:style="{ display : detailDisplay}">
-                <p>ポイント：<span v-html="pointField"></span></p>
-                <p>why?:<span v-html="reasonField"></span></p>
-            </div>
+        <div id="detail_area"
+            v-bind:style="{ display : detailDisplay, top : detailTop, left : detailLeft }">
+            <p>ポイント：<span v-html="pointText"></span></p>
+            <p>why?:<span v-html="reasonText"></span></p>
         </div>
     </div>
 </template>
@@ -122,6 +118,11 @@
 }
 
 #detail_area{
+    width: 400px;
+    position: absolute;
+    /* left: 100px; */
+    z-index: 10;
+
     color:white;
     background-color: black;
 
@@ -130,14 +131,23 @@
 
 <script>
 const detail = document.querySelector('#detail_area');
+const getPositionOfPage = (eObject, direction/* =topかleftのみ */) => {
+    let result = (direction == "top") ? eObject.target.closest(".card").getBoundingClientRect().top + window.pageYOffset
+                                      : eObject.target.closest(".card").getBoundingClientRect().left + window.pageXOffset + 350 // 350 = cardのwidth分+間隔
+    return add_px(result)
+}
+const add_px = val => val + "px";
 
 export default {
     data(){
         return{
+            // eventObject : '',
             detail : detail,
             detailDisplay : "none",
-            pointField : '',
-            reasonField : '',
+            detailTop : '',
+            detailLeft : '',
+            pointText : '',
+            reasonText : '',
             webcards :[
                 {id : 0,
                  title : '『転生したら〇〇〇〇だった件』',
@@ -241,13 +251,16 @@ export default {
     },
     
     methods:{
-        showDetail(id){
-            console.log(id)
-            this.pointField = this.details[id].point
-            this.reasonField = this.details[id].reason
+        showDetail($event, id){
+            this.detailTop = getPositionOfPage($event, "top")
+            this.detailLeft = getPositionOfPage($event, "left")         
+            // console.log(this.detailLeft)
+            this.pointText = this.details[id].point
+            this.reasonText = this.details[id].reason
             this.detailDisplay = "block"
         },
         hideDetail(){
+            // console.log("out")
             this.detailDisplay = "none"
         }
     }
