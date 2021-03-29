@@ -9,13 +9,15 @@
 
             <div class="row justify-content-around">
                 <!-- d-inline-flex -->
-                <div class="card col-4 mx-3" style="width: 18rem;" 
+                <div class="card col-8 col-md-6 col-lg-5 col-xl-4 mx-3 px-0" style="width: 18rem;" 
                     v-for="webcard in webcards" :key="webcard" 
                     v-on:mouseover="showDetail(webcard.id)" 
                     v-on:mouseout="hideDetail"
                 >
                     <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg> -->
-                    <img :src="webcard.img" alt="{{ webcard.tittle }}" class="border-bottom">
+                    <!-- <div class="p"> -->
+                    <img :src="webcard.img" alt="{{ webcard.tittle }}" class="bd-placeholder-img card-img-top border-bottom m-0" width="100%" height="250">
+                    <!-- </div> -->
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ webcard.title }}</h5>
@@ -67,21 +69,38 @@
                 </div>
             </div>
 
-            <p>『あなたと百物語』ログイン用アカウント</p>
-            <p>管理者
-email: [admin_user@ghost.com](mailto:admin_user@ghost.com)
-パスワード: adminuser
-                通常ユーザ
-email: test_user@ghost.com
-パスワード: testuser
-ブラックリストユーザ ←おすすめです！
-email: blacklisted@ghost.com
-パスワード: blacklisted</p>
-
-
-
+            <div class="d-inline-block mt-4">
+                <h6><b> 『あなたと百物語』ログイン用アカウント</b></h6>
+                <table class="table table-borderless table-sm">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>email</th>
+                            <th>パスワード</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>管理者</td>
+                            <td>admin_user@ghost.com</td>
+                            <td>adminuser</td>
+                        </tr>
+                        <tr>
+                            <td>通常ユーザ</td>
+                            <td>test_user@ghost.com</td>
+                            <td>testuser</td>
+                        </tr>
+                        <tr>
+                            <td><b>ブラックリストユーザ</b></td>
+                            <td>blacklisted@ghost.com</td>
+                            <td>blacklisted</td>
+                        </tr>                    
+                    </tbody>
+                </table>
+            </div>
         </div>
 
+        <!-- AR & blender area -->
         <div class="col-4 bg-danger">
             <h5>■AR</h5>
             <h5>■blender</h5>
@@ -123,7 +142,7 @@ export default {
                 {id : 0,
                  title : '『転生したら〇〇〇〇だった件』',
                  text : '質問の答えると、”あなたが転生したらどんな妖怪になるか”を判定してくれるwebアプリ',
-                 img : require('../assets/recarnation.png'),
+                 img : require('../assets/reincarnation.png'),
                  url : "http://kichis.sakura.ne.jp/reincarnation_which_yohkai",
                  github : "https://github.com/kichis/reincarnation_which_yohkai",
                  isHTML : true,
@@ -138,7 +157,7 @@ export default {
                 {id : 1,
                  title : '『大本山Learning』',
                  text : 'Bing Map上に寺院の位置がピンで示されており、クリックするとどの宗派の寺院かを問うクイズが出現するwebアプリ<br>(<span class="text-danger">※正否判定時に音がでます</span>)',
-                 img : require('../assets/daihonzan.png'),
+                 img : require('../assets/daihonzan3.png'),
                  url : "http://kichis.sakura.ne.jp/daihonzan_learning/",
                  github : false,
                  isHTML : true,
@@ -154,7 +173,7 @@ export default {
                  title : '『HiRoShIgE』',
                  text : 'Bing Map上に東海道五十三次の11の宿場がピンで示されており、クリックするとその宿場に関するクイズがだされるwebアプリ<br>(<span class="text-danger">※虫が苦手な方はご注意ください</span>)',
                 //  要変更
-                 img : require('../assets/daihonzan.png'),
+                 img : require('../assets/hiroshige.png'),
                  url : "http://kichis.sakura.ne.jp/hiroshige_2021/",
                  github : false,
                  isHTML : true,
@@ -168,9 +187,9 @@ export default {
                  isMySQL : false },
                 {id : 3,
                  title : '『あなたと百物語』',
-                 text : '怪談を読んだり、投稿したりできるウェブサイト',
+                 text : '怪談を読んだり、投稿したりできるウェブサイト<br>(※ログインアカウントは下記)',
                 //  要変更
-                 img : require('../assets/daihonzan.png'),
+                 img : require('../assets/a_hundred_horror.png'),
                  url : "http://kichis.sakura.ne.jp/a_hundred_horror/index.php",
                  github : "https://github.com/kichis/a_hundred_horror",
                  isHTML : true,
@@ -217,7 +236,6 @@ export default {
                  'ブラックリストユーザでのログイン＆ログアウトはぜひお試しください！<br>'+
                  'また、管理者用画面では、意図しない編集操作を防止するため、レコードにチェックを入れることでそのレコードが編集可能となるようにしています。</p>'},
             ]
-
 
         }
     },
