@@ -47,3 +47,69 @@ URLのパラメーターはVueコンポーネント側ではpropsで受け取れ
  Internet Explorer 9以前では、カルーセルはサポートされていません
 
  vue.jsとjQueryは共存させない方が良い
+
+## 学んだこと
+__Vue.js__
+- vue cli webpackを使っている場合、  
+  imgタグsrcにベタ打ちした画像パスはbase64でエンコードして出力される。  
+  v-bindを使うと、base64エンコードではなくそのままの文字列が出力されるので、画像は表示されない。
+  -> require(画像パス) とする  
+  (これはベタ打ちの場合に、裏側でなされている処理と同じ)  
+  (○)画像が見つからなかった場合、エラーになる
+
+- {{ プロパティ名 }} : vueのdataプロパティを出力
+
+
+
+__v- ディレクティブ__
+- v-for="ele in eles"  :key="ele.id"(idでなくても区別できればok)
+ : 同一のフォームに、一定種類のデータをあるだけ描画。
+   keyは、一部の要素が削除された場合などにも、DOMに配置されているデータとindex#の引き当てができるようにするためのもの。
+- v-on:イベント="関数(引数)" : イベントハンドラ
+- v-bind : 属性にdataプロパティを出力するとき
+- v-if : 与えた式の真偽で要素を描画する/しない
+- v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
+
+
+- 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
+- export default外のJS変数をexport default内で使う場合は、dataプロパティとして宣言？する。  
+  プロパティ名 : JS変数名
+
+__export default内のオプション__
+- filters : dataプロパティの値が出力される前に加工する。  
+コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
+=> Vue3で廃止！！
+
+
+__JS__
+- `element.closest(".card")` // elementの祖先要素のうち、class="card"のものを探す
+- `element.getBoundingClientRect()` // elementの「ビューポート(画面内)」における位置を取得
+- `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
+- `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
+
+
+
+
+
+- いろんなAPI
+- test code
+- オブジェクト指向のマスター(わかりやすい、汎用性のあるコーディング)
+検索機能(user/tag)
+処理完了後のコメント表示
+NGワードを含む投稿の規制
+home.php 新しい記事に"new!"をつける
+home.php 各投稿のコメント数も表示
+コメントをコメントの投稿者が削除できるようにする
+edit_users.php バリデーションに引っ掛かった場合、入力した情報が再度表示される
+ボタンの押下回数でイベントが起きる（サイトも文字フォントが変わるとか、悲鳴、怖い画像）
+オブジェクト指向を活用したコーディング
+処理完了後のコメント表示
+やってみたいこと
+ソルトを使ったpassw保存や、ブラウザ側でハッシュ化するpassw保存方法
+
+v-on : eventを使う時、
+- event用のdataプロパティを作成し、method内でそのプロパティに代入する
+eventだけであれば、function(event)
+他の引数もあればfunction($event, 他の引数)
+
+
