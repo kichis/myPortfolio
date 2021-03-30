@@ -1,49 +1,63 @@
 <template>
+    <!--  -->
     <div class="container">
         <div class="row">
-            
-            <div class="container col-8">
-               <h1>Portfolio of Kichishima Naho</h1>
+            <!--  -->
+            <div id="main_area" class="col-9">
+                <h1 class="h-25">Portfolio of Kichishima Naho</h1>
 
-                <fieldset id="myNewsField" class="col">
-                        <legend>自分news</legend>
-                        <a href="#">基本情報技術者試験の勉強はじめました</a>
+                <fieldset id="myNewsField" class="h-25">
+                        <!-- todo: legendの位置を左寄りにしたい -->
+                        <legend class="w-25">自分news</legend>
+                        <!-- 自分newsを設置するか（需要ある？その時々で変わっていく情報の修正が面倒）、文言はこれでいいか？ -->
+                        <p>Linuxの本を読み始めました</p>
                 </fieldset>
 
-                <div class="row mx-auto my-auto">
+            </div>
+            
+            <div class="col-3 bg-success">
+                <img  src="../assets/logo.png" alt="my image">
+            </div>
+
+        </div>
+
+        <carousel></carousel>
+
+    </div>
+
+                    <div class="row mx-auto my-auto h-50">
                     <div id="homeCarouselControls" class="carousel slide" data-ride="carousel">
                     <!-- オートトランジションをつけるなら data-ride="carousel"> -->
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active justify-content-around bg-danger">
-                                <!-- <img src="" alt="">one -->
-                                <div class="col-lg-2 col-md-3">
-                                    <a href="" class="carouselContent  bg-secondary">one</a>
-                                    <!-- <p class="num ">one</p> -->
-                                    </div>
+
+                                    <!-- <a href="" class="carouselContent bg-secondary">one</a> -->
+                                
                             </div>
                             <div class="carousel-item justify-content-around bg-warning">
-                                <div class="col-lg-2 col-md-3">
-                                    <a href="" class="carouselContent col-lg-2 col-md-3  bg-success">two</a>
-                                <!-- <p class="col-lg-2 col-md-6">Two</p> -->
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/daihonzan3.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- あああああ
+                                    <a href="" class="carouselContent col-lg-2 col-md-3  bg-success">two</a> -->
                                 </div>
                                 
                             </div>
                             <div class="carousel-item justify-content-around bg-primary">
-                                <div class="col-lg-2 col-md-3">
-                                    <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">three</a>
-                                <!-- <p class="col-lg-2 col-md-6">three</p> -->
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/hiroshige.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">three</a> -->
                                 </div>
                             </div>
 
-                            <div class="carousel-item justify-content-around">
-                                <div class="col-lg-2 col-md-3">
-                                    <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">four</a>
-                                <!-- <p class="col-lg-2 col-md-6">three</p> -->
+                            <div class="carousel-item justify-content-around bg-success">
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/a_hundred_horror.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">four</a> -->
                                 </div>
                             </div>
                         </div>
 
-                        <ol class="carousel-indicators">
+                        <ol class="carousel-indicators bg-dark">
                             <li data-target="#homeCarouselControls" data-slide-to="0" class="active"></li>
                             <li data-target="#homeCarouselControls" data-slide-to="1"></li>
                             <li data-target="#homeCarouselControls" data-slide-to="2"></li>
@@ -60,18 +74,17 @@
                         </a>
                     </div>
                 </div>
-
-                
-            </div>
-            
-            <div class="col-3">
-                <img  src="../assets/logo.png" alt="my image">
-            </div>
-</div>
-    </div>
 </template>
 
 <style>
+#main_area{
+    height: 50vh;
+}
+
+legend{
+    /* margin-right: 200px; */
+}
+
 #myNewsField{
     border: 1px solid black;
 }
@@ -145,12 +158,17 @@
 </style>
 
 <script>
+import carousel from './carousel'
 import jQuery from 'jquery'
+// import Carousel from './carousel.vue'
 global.jquery = jQuery
 global.$ = jQuery
 window.$ = window.jQuery = require('jquery')
 
 export default {
+    components: {
+        carousel,
+    },
     mounted:function(){
         jQuery(function ($) {
             // $('#homeCarouselControls').carousel({
@@ -161,7 +179,7 @@ export default {
             var minPerSlide = 1;
             var next = $(this).next();
             if (!next.length) {
-            next = $(this).siblings(':first');
+                next = $(this).siblings(':first');
             }
             next.children(':first-child').clone().appendTo($(this));
             

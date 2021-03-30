@@ -50,16 +50,18 @@ URLのパラメーターはVueコンポーネント側ではpropsで受け取れ
 
 ## 学んだこと
 __Vue.js__
+- {{ プロパティ名 }} : vueのdataプロパティを出力
 - vue cli webpackを使っている場合、  
   imgタグsrcにベタ打ちした画像パスはbase64でエンコードして出力される。  
   v-bindを使うと、base64エンコードではなくそのままの文字列が出力されるので、画像は表示されない。
-  -> require(画像パス) とする  
-  (これはベタ打ちの場合に、裏側でなされている処理と同じ)  
+  -> require(画像パス) とする(これはベタ打ちの場合に、裏側でなされている処理と同じ)  
   (○)画像が見つからなかった場合、エラーになる
 
-- {{ プロパティ名 }} : vueのdataプロパティを出力
-
-
+__第一階層のディレクトリの役割(雑に)__
+- dist : ??
+- node_modules : npmで入れた便利機能たちが入っている(don't touch!)
+- public : ビルド後のファイル?
+- src : 製作者が作成したファイル、データを置く場所  
 
 __v- ディレクティブ__
 - v-for="ele in eles"  :key="ele.id"(idでなくても区別できればok)
@@ -71,15 +73,43 @@ __v- ディレクティブ__
 - v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
 
 
+__export default内__
 - 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
 - export default外のJS変数をexport default内で使う場合は、dataプロパティとして宣言？する。  
   プロパティ名 : JS変数名
-
-__export default内のオプション__
+- mothods : 関数
+- computed : 依存関係にあるリアクティブなデータが変化した時に"だけ"、自動で算出される。  
+  (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
+- watch(監視するリアクティブ変数, 関数)
 - filters : dataプロパティの値が出力される前に加工する。  
 コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
 => Vue3で廃止！！
 
+
+__Composition API__
+[参照](https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)
+- TypeScriptのサポート
+- ロジックの再利用の難しさ
+- アプリケーションが巨大になると、コードの把握が難しくなる
+ver2までのVueが抱えていた、これらの問題を解決する。  
+
+`<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({})
+</script>`
+
+- data => reactive(オブジェクトとして宣言、参照) / ref(単一の変数として宣言できる、templete以外から参照する時は".value"を付ける) : リアクティブなデータを格納する２形態
+- components・props => 以前と同じ
+- date・methods・computed・ライフサイクルメソッド => 全てsetupメソッドの中に記述、templete内で使うものだけreturn  
+  (○)"this"が不要になった = アロー関数が使える  
+  (○)returnで使用できる値を明示することで、データのアクセス方法を
+    - methods => JSの関数と同じ
+    - computed => computed()で囲む
+- __関数をどこのコンポーネントでも利用可能な形に切り分けできる__
+
+__その他__
+- Homeのカルーセルに関しては、[こちら](https://zenn.dev/kazuwombat/articles/fea3428a0b888c8fb3ac)を参照させてもらいました。(ありがとうございます！)
 
 __JS__
 - `element.closest(".card")` // elementの祖先要素のうち、class="card"のものを探す
@@ -87,7 +117,15 @@ __JS__
 - `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
 - `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
 
+__CSS__
+- clip-path : 要素の表示をくり抜く(orマスクする)ことができる
 
+
+__other__
+- エイリアス(alias) : 別名、ショートカット 
+- 相対パスより絶対パス - 記述ファイルの設置場所を変えても有効だから。
+- パスの＠/ = src/  
+  : webpackのコンフィグレーションオプションとして、webpack.config.jsのresolveにエイリアスとして登録されている。Vueに限らない。(パスの中で".vue"拡張子が不要なのも、このオプションによるものらしい。[出典](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack))
 
 
 
