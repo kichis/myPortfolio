@@ -15,7 +15,12 @@
     </p>
     <input type="text" v-model="msg">
     <button @click="clear()">clear</button>
+
     </div> -->
+
+
+
+
 </template>
 
 <script>
@@ -24,9 +29,11 @@
 
 import myheader from './components/myheader'
 
+
 export default {
   components: { 
     myheader,
+    
   },
 
   data(){

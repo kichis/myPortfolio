@@ -13,4 +13,12 @@
             <li>Qiita &nbsp; <img src="../assets/qiita-favicon.png" alt="qiita logo" width="40" height="20"> &nbsp; <a href="https://qiita.com/kichi12321" target="_blank">@kichi12321</a></li>
         </ul>
     </p>
+
+
+    <!-- <div id="app"> -->
+ 
+<!-- </div> -->
 </template>
+
+
+
