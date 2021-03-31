@@ -4,26 +4,23 @@
         <!-- ページをクリッピングするコンテナ(窓みたいに) -->
         <div class="clipping-container">
             <!-- ページ全体、このleftをtransitionでスライドさせてページを動かす -->
-            <div class="pages" :style="{ left: currentLeft }">
-<!-- v-forで動的レンダリング(srcとaltのみ異なる) -->
-                <div class="page p-0">
+<!--  -->
+            <div class="pages bg-primary"
+            >
+
+                <!-- isCurrentPageの引数:page数とindex#の差分調整のため+1 -->
+                <div class="page p-0"
+                    v-for="(card) in cards"
+                    :key="card.index"
+                :style="{ left: currentLeft }"
+                    >
+                    <!-- :class="{ 'order-last' : isLastPage(id+1) }" -->
+
                     <div class="card">
-                        <img src="../assets/reincarnation.png" alt="転生したら〇〇〇〇だった件" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
-                    </div>
-                </div>
-                <div class="page p-0">
-                    <div class="card">
-                        <img src="../assets/daihonzan3.png" alt="大本山Learning" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
-                    </div>
-                </div>
-                <div class="page p-0">
-                    <div class="card">
-                        <img src="../assets/hiroshige.png" alt="HiRoShIgE" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
-                    </div>
-                </div>
-                <div class="page p-0">
-                    <div class="card">
-                        <img src="../assets/a_hundred_horror.png" alt="あなたと百物語" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                        <!-- {{ id }} -->
+                        <img :src="card.src" :alt="card.alt" 
+                            class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200"
+                        >
                     </div>
                 </div>
             </div>
@@ -52,14 +49,25 @@
 <script>
 import { defineComponent } from "vue";
 
+const pages = document.querySelector('.pages');
+
+
 export default defineComponent({
 // nameどうする？
     name: "HelloWorld",
     data() {
         return {
+            pages : pages,
             currentPage: 1, // 現在のページ
+            lastPage: 4,
             totalPage: 4, // ページの全数
             pageWidth: 250, // 1ページの幅
+            cards: [
+                {src: require('../assets/reincarnation.png'), alt:'転生したら〇〇〇〇だった件'},
+                {src: require('../assets/daihonzan3.png'), alt:'大本山Learning'},
+                {src: require('../assets/hiroshige.png'), alt:'HiRoShIgE'},
+                {src: require('../assets/a_hundred_horror.png'), alt:'あなたと百物語'}
+            ]
         };
     },
     methods: {
@@ -67,10 +75,23 @@ export default defineComponent({
         forwardPage() {
             // 最後のページの場合return
             if (this.currentPage === this.totalPage) {
-// 一番前にする
-                return;
+                // 一番前にする
+                this.currentPage = 1
+                // this.lastPage = this.totalPage
+                // return;
+            
+            }else{
+                this.currentPage += 1;
+                // pages.appendChild(this.currentPage);
             }
-            this.currentPage += 1;
+            if(this.lastPage === this.totalPage){
+                this.lastPage = 1;
+            }else{
+                
+                this.lastPage += 1;
+            }
+
+                this.replaceCards()
         },
 
         // ページを1つ戻す
@@ -93,6 +114,21 @@ export default defineComponent({
         isCurrentPage(/* number */page) {
             return this.currentPage === page;
         },
+
+        isLastPage(/* number */page) {
+            return this.lastPage === page;
+        },
+
+        replaceCards(){
+            
+            let forward = this.cards.splice(0, 1)// this.cards.push(forward);
+            console.log(forward)
+            console.log(this.cards)
+            // console.log(forward)
+            this.cards.push(forward[0])
+        }
+
+
     },
     computed: {
         // 現在のpositionからleftに変換
@@ -100,6 +136,8 @@ export default defineComponent({
         currentLeft() {
             return String(this.pageToPosition()) + "px";
         },
+
+
     },
 });
 </script>
@@ -117,11 +155,11 @@ export default defineComponent({
 .pages {
     display: flex;
     /* ここにtransitionをつけることでpagesのleftを変更した場合にアニメーションさせることができる */
-    transition: left 0.5s ease;
     position: absolute;
     left: 0;
 }
 .page {
+    transition: left 0.5s ease;
     width: 250px;
     height: 200px;
     margin: 0 40px;

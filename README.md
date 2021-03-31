@@ -64,7 +64,7 @@ __第一階層のディレクトリの役割(雑に)__
 - src : 製作者が作成したファイル、データを置く場所  
 
 __v- ディレクティブ__
-- v-for="ele in eles"  :key="ele.id"(idでなくても区別できればok)
+- v-for="ele(, index) in eles"  :key="ele.id"(idでなくても区別できればok)
  : 同一のフォームに、一定種類のデータをあるだけ描画。
    keyは、一部の要素が削除された場合などにも、DOMに配置されているデータとindex#の引き当てができるようにするためのもの。
 - v-on:イベント="関数(引数)" : イベントハンドラ
@@ -127,7 +127,11 @@ __other__
 - パスの＠/ = src/  
   : webpackのコンフィグレーションオプションとして、webpack.config.jsのresolveにエイリアスとして登録されている。Vueに限らない。(パスの中で".vue"拡張子が不要なのも、このオプションによるものらしい。[出典](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack))
 
+__vs code__
 
+option + comm + 上下 : 複数行選択
+option + <- / -> : 区切りまで
+- 慣れてないからか、どことどこがバインドされているのか追いきれず、思いがけないところで繋がっていたりする。田舎の人間関係みたいだ。
 
 - いろんなAPI
 - test code
@@ -151,3 +155,53 @@ eventだけであれば、function(event)
 他の引数もあればfunction($event, 他の引数)
 
 
+<!-- 避難 -->
+                    <div class="row mx-auto my-auto h-50">
+                    <div id="homeCarouselControls" class="carousel slide" data-ride="carousel">
+                    <!-- オートトランジションをつけるなら data-ride="carousel"> -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active justify-content-around bg-danger">
+
+                                    <!-- <a href="" class="carouselContent bg-secondary">one</a> -->
+                                
+                            </div>
+                            <div class="carousel-item justify-content-around bg-warning">
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/daihonzan3.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- あああああ
+                                    <a href="" class="carouselContent col-lg-2 col-md-3  bg-success">two</a> -->
+                                </div>
+                                
+                            </div>
+                            <div class="carousel-item justify-content-around bg-primary">
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/hiroshige.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">three</a> -->
+                                </div>
+                            </div>
+
+                            <div class="carousel-item justify-content-around bg-success">
+                                <div class="card col-lg-3 col-md-3 p-0">
+                                    <img src="../assets/a_hundred_horror.png" alt="" class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200">
+                                    <!-- <a href="" class="carouselContent col-lg-2 col-md-3 bg-dark">four</a> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <ol class="carousel-indicators bg-dark">
+                            <li data-target="#homeCarouselControls" data-slide-to="0" class="active"></li>
+                            <li data-target="#homeCarouselControls" data-slide-to="1"></li>
+                            <li data-target="#homeCarouselControls" data-slide-to="2"></li>
+                            <li data-target="#homeCarouselControls" data-slide-to="3"></li>
+                        </ol>
+
+                        <a class="carousel-control-prev ml-n3" href="#homeCarouselControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next mr-n3" href="#homeCarouselControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
