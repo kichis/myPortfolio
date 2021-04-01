@@ -1,22 +1,30 @@
 <template>
     <!--  -->
-    <div class="container">
+    <div class="container bg-warning">
         <div class="row">
             <!--  -->
             <div id="main_area" class="col-9">
-                <h1 class="h-25">Portfolio of Kichishima Naho</h1>
+                <div class="h-50 d-flex justify-content-center align-middle">
+                    <h1 class="my-auto">Portfolio of Kichishima Naho</h1>
+                </div>
 
-                <fieldset id="myNewsField" class="h-25">
-                        <!-- todo: legendの位置を左寄りにしたい -->
-                        <legend class="w-25">自分news</legend>
-                        <!-- 自分newsを設置するか（需要ある？その時々で変わっていく情報の修正が面倒）、文言はこれでいいか？ -->
-                        <p>Linuxの本を読み始めました</p>
-                </fieldset>
-
+                <div class="h-50 d-flex justify-content-center">
+                    <a href="https://twitter.com/kichi12321" target="_blank" class="mr-4 my-auto">
+                        <i class="fab fa-twitter fa-2x"></i>@kichi12321
+                    </a>
+                    <a href="https://github.com/kichis" target="_blank" class="ml-4 my-auto">
+                        <i class="fab fa-github fa-2x"></i>kichis
+                    </a>
+                </div>
             </div>
-            
-            <div class="col-3 bg-success">
-                <img  src="../assets/logo.png" alt="my image">
+
+            <!--  -->
+            <div class="col-3 d-flex justify-content-center align-items-center bg-success">
+                <!-- imgタグだけだとd-flexにより大きさが崩れるのでdivで囲む -->
+                <div>
+                    <!-- border -->
+                    <img  src="../assets/face.png" alt="my image" width="200" class="border">
+                </div>
             </div>
 
         </div>
@@ -25,7 +33,6 @@
 
     </div>
 
-
 </template>
 
 <style>
@@ -33,17 +40,7 @@
     height: 50vh;
 }
 
-legend{
-    /* margin-right: 200px; */
-}
 
-#myNewsField{
-    border: 1px solid black;
-}
-
-/* #myImage{
-    float: right;
-} */
 
 /* コントローラー矢印を白から黒に変更 */
 .carousel-control-next-icon,
