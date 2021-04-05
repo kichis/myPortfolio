@@ -67,6 +67,18 @@ __Vue.js__
         const targetElement = this.$refs.pages
         this.pages = targetElement
    },`
+- jQueryの書き方  
+  `import jQuery from 'jquery'
+   global.jquery = jQuery
+   global.$ = jQuery
+   window.$ = window.jQuery = require('jquery')
+   export default {
+     mounted:function(){
+       jQuery(function ($) {
+         ここにjQueryの処理を書く
+       });
+     }
+   }`
 
 __ver.3からの機能__
 - templete直下の要素が複数でもok

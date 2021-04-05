@@ -9,7 +9,7 @@
 
             <div class="row justify-content-around">
                 <!-- d-inline-flex -->
-                <div class="card col-8 col-md-6 col-lg-5 col-xl-4 mx-3 mt-5 px-0" style="width: 18rem;" 
+                <div :ref="webcard.name" class="card col-8 col-md-6 col-lg-5 col-xl-4 mx-3 mt-5 px-0" style="width: 18rem;" 
                     v-for="webcard in webcards" :key="webcard.id" 
                     v-on:mouseover="showDetail($event, webcard.id)" 
                     v-on:mouseout="hideDetail"
@@ -153,7 +153,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .linkToApp{
     /* background-color: coral; */
     background-color: rgb(255, 200, 81);
@@ -196,6 +196,9 @@ const add_px = val => val + "px";
 export default {
     data(){
         return{
+            hash: this.$route.hash, // hashを取得
+
+
             // eventObject : '',
             detail : detail,
             detailDisplay : "none",
@@ -205,6 +208,7 @@ export default {
             reasonText : '',
             webcards :[
                 {id : 0,
+                 name: 'reincarnation',
                  title : '『転生したら〇〇〇〇だった件』',
                  text : '質問の答えると、”あなたが転生したらどんな妖怪になるか”を判定してくれるwebアプリ',
                  img : require('../assets/reincarnation.png'),
@@ -220,6 +224,7 @@ export default {
                  isPHP : false,
                  isMySQL : false },
                 {id : 1,
+                 name : 'daihonzan',
                  title : '『大本山Learning』',
                  text : 'Bing Map上に寺院の位置がピンで示されており、クリックするとどの宗派の寺院かを問うクイズが出現するwebアプリ<br>(<span class="text-danger">※正否判定時に音がでます</span>)',
                  img : require('../assets/daihonzan3.png'),
@@ -235,6 +240,7 @@ export default {
                  isPHP : false,
                  isMySQL : false },   
                 {id : 2,
+                 name : 'hiroshige',
                  title : '『HiRoShIgE』',
                  text : 'Bing Map上に東海道五十三次の11の宿場がピンで示されており、クリックするとその宿場に関するクイズがだされるwebアプリ<br>(<span class="text-danger">※虫が苦手な方はご注意ください</span>)',
                 //  要変更
@@ -251,6 +257,7 @@ export default {
                  isPHP : false,
                  isMySQL : false },
                 {id : 3,
+                 name : 'hundred_horror',
                  title : '『あなたと百物語』',
                  text : '怪談を読んだり、投稿したりできるウェブサイト<br>(※ログインアカウントは下記)',
                 //  要変更
@@ -335,8 +342,21 @@ export default {
 
         }
     },
-    
+    mounted() {
+        this.$nextTick(function () { // DOMの読み込み完了時に実行
+            if (this.hash) {
+                const refName = this.hash.replace('#', '')
+                this.scrollToAnchorPoint(refName)
+            }
+        })
+    },
     methods:{
+        scrollToAnchorPoint(refName) {
+            const el = this.$refs[refName]
+            el.scrollIntoView({ behavior: 'smooth' })
+        },
+
+
         showDetail($event, id){
             this.detailTop = getPositionOfPage($event, "top")
             let horizontalDirect = (id == 4) ? "left" : "right"

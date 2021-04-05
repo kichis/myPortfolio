@@ -1,5 +1,4 @@
 import { createWebHistory, createRouter } from "vue-router";
-// パスになぜか@をつけないといけないようだ
 import home from '@/components/home'
 import aboutme from '@/components/aboutme'
 import skills from '@/components/skills'
@@ -32,7 +31,6 @@ const routes = [
         name: "Contact",
         component: contact,
     },
-
 ];
 
 const router = createRouter({
