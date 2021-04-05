@@ -60,6 +60,13 @@ __Vue.js__
 - 通常のJSのDOM取得方法(idやclassによる方法)は使えないし、あまり使う必要がないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
 - _.debounce/_.throttle(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
   負荷の高い処理などに使う。
+- DOMの取得方法  
+  DOM : `ref="pages"`  
+  script : 
+  `mounted() {
+        const targetElement = this.$refs.pages
+        this.pages = targetElement
+   },`
 
 __ver.3からの機能__
 - templete直下の要素が複数でもok
@@ -100,7 +107,7 @@ __export default内__
 - computed : 依存関係にあるリアクティブなデータが変化した時に"だけ"、自動で算出される。  
   (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
   methodsでは問題ない記述でも、computedではエラーになる場合がある = unexpected side effect (予想外のdataプロパティを変更しようとするとこれになるようだ)
-- watch(監視するリアクティブ変数, 関数)
+- watch(監視するリアクティブ変数, 関数(newValue, oldValue))
   非同期処理、処理間隔の設定、中間状態の設置はwatchのみで、computedにはできない。
 - filters : dataプロパティの値が出力される前に加工する。  
 コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
