@@ -58,6 +58,8 @@ __Vue.js__
   (○)画像が見つからなかった場合、エラーになる
 - dataプロパティの配列に代入する時は、x[0] = "hoge"でなく、x.splice(0, 1, "hoge")とする。(さもなくば、リアクティブな動作にならない)
 - 通常のJSのDOM取得方法(idやclassによる方法)は使えないし、あまり使う必要がないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
+- _.debounce/_.throttle(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
+  負荷の高い処理などに使う。
 
 __ver.3からの機能__
 - templete直下の要素が複数でもok
@@ -75,8 +77,16 @@ __v- ディレクティブ__
 - v-for="ele(, index) in eles"  :key="ele.id"(idでなくても区別できればok)
  : 同一のフォームに、一定種類のデータをあるだけ描画。
    keyは、一部の要素が削除された場合などにも、DOMに配置されているデータとindex#の引き当てができるようにするためのもの。
-- v-on:イベント="関数(引数)" : イベントハンドラ
-- v-bind : 属性にdataプロパティを出力するとき
+- v-on:イベント="関数(引数)" : イベントハンドラ。`@:イベント`でも可。  
+  イベントオブジェクトを使用する場合 : v-on:イベント="関数()" /  関数(event){}
+  イベントオブジェクトを使用する(引数あり) : v-on:イベント="関数($event, 引数)" /  関数($event, 引数){}
+  イベント修飾子 : イベントの細かい設定をする  
+  (この他に、キーやマウスの操作を設定する修飾子もある。)
+- v-bind : HTML属性にdataプロパティを出力するとき。  
+  (インラインに全て記述せずに、オブジェクト・配列・三項演算子などの形式でdataプロパティやcomputedに記述することも可能。)  
+  class : class名に対応して与えたdataプロパティの真偽値によって、そのclassを適用するか決まる。  
+          
+  style : style名に対して、値を与える。style名は、キャメルケースorケバブケース。
 - v-if : 与えた式の真偽で要素を描画する/しない
 - v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
 - v-model : formタグ関係の双方向データバインディング
@@ -86,11 +96,12 @@ __export default内__
 - 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
 - export default外のJS変数をexport default内で使う場合は、dataプロパティとして宣言？する。  
   プロパティ名 : JS変数名
-- mothods : 関数  
+- mothods : 関数。再描画が起きるたびに"常に"関数を実行する。  
 - computed : 依存関係にあるリアクティブなデータが変化した時に"だけ"、自動で算出される。  
   (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
   methodsでは問題ない記述でも、computedではエラーになる場合がある = unexpected side effect (予想外のdataプロパティを変更しようとするとこれになるようだ)
 - watch(監視するリアクティブ変数, 関数)
+  非同期処理、処理間隔の設定、中間状態の設置はwatchのみで、computedにはできない。
 - filters : dataプロパティの値が出力される前に加工する。  
 コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
 => Vue3で廃止！！
@@ -126,10 +137,13 @@ __JS__
 - `element.getBoundingClientRect()` // elementの「ビューポート(画面内)」における位置を取得
 - `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
 - `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
+- noop : 空の関数。 = no operation = function(){}
 
 __CSS__
 - clip-path : 要素の表示をくり抜く(orマスクする)ことができる
-
+- transform : 変形
+- transition : 変化の仕方
+- 他、アニメーションするには、@keyframesやanimationなど。
 
 __other__
 - エイリアス(alias) : 別名、ショートカット 

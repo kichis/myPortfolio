@@ -1,39 +1,43 @@
 <template>
 <!--  -->
     <div class="container bg-dark">
-        <!--  -->
-        <button @click="backwardPage" class="align-top"><span class="carousel-control-prev-icon"></span></button>
+        <button @click="backwardPage" class="align-top">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
 
         <!-- ページをクリッピングするコンテナ(窓みたいに) -->
         <div class="clipping-container">
             <!-- ページ全体、このleftをtransitionでスライドさせてページを動かす -->
 <!--  -->
-            <div ref="pages" class="pages bg-primary" :style="{ left: currentLeft, transition : test(b)}">
-                    <!-- isCurrentPageの引数:page数とindex#の差分調整のため+1 -->
-                    <div class="page p-0"
-                        v-for="(card) in cards"
-                        :key="card"
-                        >
-                        <!-- :class="{ 'order-last' : iscurrentPage(id+1) }" -->
+            <!-- <div ref="pages" class="pages bg-primary"> -->
+            <div ref="pages" class="pages bg-primary" 
+                :style="{ left: leftPosition, transition: slowMove }"
+            >
+                <!-- :style="{ left: currentLeft, transition: slowMove }" -->
+                <div class="page p-0"
+                    v-for="(card) in cards"
+                    :key="card"
+                    >
+                    <!-- :class="{ 'order-last' : iscurrentPage(id+1) }" -->
 
-                        <div class="card">
-                            <!-- {{ id }} -->
-                            <img :src="card.src" :alt="card.alt" 
-                                class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200"
-                            >
-                        </div>
+                    <div class="card">
+                        <img :src="card.src" :alt="card.alt" 
+                            class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="200"
+                        >
+                    </div>
                     </div>
             </div>
         </div>
         
-        <button @click="forwardPage" class="align-top"><span class="carousel-control-next-icon"></span></button>
-        <!-- <button @click="replaceCards" class="align-top"><span class="carousel-control-next-icon"></span></button> -->
+        <button @click="forwardPage" class="align-top">
+            <span class="carousel-control-next-icon"></span>
+        </button>
 
         <!-- ページを表現するドット -->
         <div class="dots">
             <!-- 現在のページはdot-currentクラスが当たる -->
             <span
-                v-for="index in totalPage"
+                v-for="index in TOTAL_PAGE"
                 :class="{ dot: true, 'dot-current': isCurrentPage(index) }"
                 :key="index"
             >
@@ -76,89 +80,72 @@ export default defineComponent({
     name: "HelloWorld",
     data() {
         return {
-            // transition : transition,
             control : true,
-            b : true,
+
+            left : 0,
+            isSlow : true, // pageの移動にスローアニメーションを入れるか
             pages : '',
-            // left : '',
             currentPage: 1, // 現在のページ
-            lastPage: 4,
-            totalPage: 4, // ページの全数
+            lastPage: 4, // 最後のページ
+            START_PAGE: 1, // 最初のページ (保守性-始まりが0でも1でも速対応できるよう-設置)
+            TOTAL_PAGE: 4, // ページの全数
             pageWidth: 250, // 1ページの幅
             cards: [
-                {src: require('../assets/reincarnation.png'), alt:'転生したら〇〇〇〇だった件'},
-                {src: require('../assets/daihonzan3.png'), alt:'大本山Learning'},
-                {src: require('../assets/hiroshige.png'), alt:'HiRoShIgE'},
-                {src: require('../assets/a_hundred_horror.png'), alt:'あなたと百物語'}
+                { src: require('../assets/reincarnation.png'), alt:'転生したら〇〇〇〇だった件' },
+                { src: require('../assets/daihonzan3.png'), alt:'大本山Learning' },
+                { src: require('../assets/hiroshige.png'), alt:'HiRoShIgE' },
+                { src: require('../assets/a_hundred_horror.png'), alt:'あなたと百物語' }
             ]
         };
     },
-      mounted() {
-   const targetElement = this.$refs.pages
-//    const targetElementText = this.$refs.first_child.textContent
-   console.log('対象のDOM：', targetElement);
-   this.pages = targetElement
-//    console.log('対象のDOMのテキスト：', targetElementText);
-  },
+    mounted() {
+        // Vue.jsでのDOMの取得方法
+        const targetElement = this.$refs.pages
+        this.pages = targetElement
+    },    
     created:function(){
-        // const transition = document.querySelector('.slide-leave-to');
+        // イベントリスナーを設置(leftの移動が完了した時)
         window.addEventListener('transitionend', () => {
-  console.log('トランジション終了');
-  this.replaceCards()
-  console.log(this.pages.style);
-//   this.pages.style.right = "-330px"
-// this.con
-// this.test(false)
-this.b = false
-this.currentLeft = "0"
-  console.log(this.pages.style);
-// this.b = true
-//   this.currentRight = "0px"
-});
+            // console.log('トランジション終了');
+            // (隠れた)先頭のカードを最後に、他は１つ前にずらす
+            this.replaceCards()
+            this.isSlow = false
+            setTimeout(() => { this.isSlow = true }, 50);
+        });
     },
+    
     methods: {
         // ページを1つ進める
         forwardPage() {
-            // 最後のページの場合return
-            if (this.currentPage === this.totalPage) {
-                // 一番前にする
-                this.currentPage = 1
-                // this.lastPage = this.totalPage
-                // return;
-            
-            }else{
-                this.currentPage += 1;
-                // pages.appendChild(this.currentPage);
-            }
-            if(this.lastPage === this.totalPage){
-                this.lastPage = 1;
-            }else{
-                
-                this.lastPage += 1;
-            }
-
-                
+            // 最後のページの場合 1に戻す
+            const forward = page => (page === this.TOTAL_PAGE) ? this.START_PAGE : ++page 
+            this.currentPage = forward(this.currentPage)
+            this.lastPage = forward(this.lastPage)
+            this.left = -330
         },
+        // ページを1つ戻す
+        backwardPage() {
+            // 最初のページの場合 最後のページにする
+            const backward = page => (page === this.START_PAGE) ? this.TOTAL_PAGE : --page 
+            this.currentPage = backward(this.currentPage)
+            this.lastPage = backward(this.lastPage)
+            this.left = 330
+        },
+    // console.log(this.currentPage, this.lastPage)      
+
         // control(){
         //     return 
         // },
-        // ページを1つ戻す
-        backwardPage() {
-            // 最初のページの場合return
-            if (this.currentPage === 1) {
-// 一番最後にいく
-                return;
-            }
-            this.currentPage -= 1;
-        },
+
+
 
         // 現在のページをpositionに変換
         // pageToPosition(): number {
-        pageToPosition(){
-            // let a = 
-            // console.log(a)
-            return -(this.pageWidth + 40*2) * (this.currentPage / this.currentPage * 1);
-        },
+        // pageToPosition(){
+        //     // let a = 
+        //     // console.log(a)
+        //     return -(this.pageWidth + 40*2) * (this.currentPage / this.currentPage * 1);
+        // },
 
         // isCurrentPage(page: number) {
         isCurrentPage(/* number */page) {
@@ -169,14 +156,12 @@ this.currentLeft = "0"
             return this.lastPage === page;
         },
 
-        replaceCards(){
-            
-            let forward = this.cards.splice(0, 1)// this.cards.push(forward);
-            console.log(forward)
-            console.log(this.cards)
-            // console.log(forward)
-            this.cards.push(forward[0])
+        replaceCards(){           
+            let first = this.cards.splice(0, 1)// this.cards.push(forward);
+            this.cards.push(first[0])
         },
+
+
         // pagestoLeft(){
         //     return "-250px";
         // }
@@ -184,11 +169,7 @@ this.currentLeft = "0"
             // console.log(String(this.pageToPosition()) + "px")
             // return String(this.pageToPosition()) + "px";
             // }
-            test(bool){
-                let a = bool == true ? "left 0.5s ease" : ""
-                return a
 
-            }
     },
     computed: {
         // 現在のpositionからleftに変換
@@ -197,21 +178,29 @@ this.currentLeft = "0"
         //     console.log(String(this.pageToPosition()) + "px")
         //     return String(this.pageToPosition()) + "px";
         // },
-
-
+        slowMove(){
+            return this.isSlow ? "left 0.5s ease" : ""
+        },
+        leftPosition(){
+            return this.left + "px"
+        }
     },
 
+
+
+
     watch: {
-        currentPage: function(){
-            this.currentLeft = "-330px";
-               
+        isSlow: function(newVal, oldVal){
+            (newVal == false && oldVal == true) ? this.left = 0 : false
         },
+
         cards:function(){
             this.currentLeft = "330px";
         },
-        transition:function(){
-            console.log("トランジション完了？")
-        }
+
+        // transition:function(){
+        //     console.log("トランジション完了？")
+        // }
     }
 
 });
@@ -230,10 +219,10 @@ this.currentLeft = "0"
 .pages {
     width: 1320px;
     display: flex;
-    /* ここにtransitionをつけることでpagesのleftを変更した場合にアニメーションさせることができる */
     position: absolute;
+    /* ここにtransitionをつけることでpagesのleftを変更した場合にアニメーションさせることができる */
     left: 0;
-    right:-500px;
+    /* right:-500px; */
     /* transition: left 0.5s ease; */
 }
 .page {
