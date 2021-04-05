@@ -14,7 +14,7 @@
                     v-on:mouseover="showDetail($event, webcard.id)" 
                     v-on:mouseout="hideDetail"
                 >
-                    <img :src="webcard.img" alt="{{ webcard.tittle }}" class="bd-placeholder-img card-img-top border-bottom m-0" width="100%" height="250">
+                    <img :src="webcard.img" :alt="webcard.tittle" class="bd-placeholder-img card-img-top border-bottom m-0" width="100%" height="250">
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ webcard.title }}</h5>
