@@ -1,4 +1,10 @@
 <template>
+  <!-- <div class="container-fluid bg-danger">
+    test
+    <div
+    :style="{left: leftPosition}">ほげほげ</div>
+  </div> -->
+
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +18,7 @@
           <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/about" class="nav-link">AboutMe</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/skills" class="nav-link">Skills</router-link>
@@ -43,10 +49,21 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form> -->
-      
+
     </div>
   </nav>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    
+  },
+})
+</script>
+
 
 <style>
 #navbar{
