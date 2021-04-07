@@ -8,21 +8,25 @@
                 <p>languages:</p>
                 <p>
                     <ul>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
                         <li>JavaScript</li>
-                        <li>Vue</li>
-                        <li>React</li>
                         <li>PHP</li>
-                        <li>Laravel</li>
                         <li>C#</li>
+
+                        <li>Bootstrap</li>
+                        <li>Tailwind CSS??</li>
+                        <li>jQuery</li>
+                        <li>Vue.js</li>
+                        <li>MySQL</li>
+                        <li>Unity</li>
                     </ul>
                 </p>
 
                 <p>team develpment:</p>
                 <p>
                     <ul>
-                        <li>通っていたスクールの仲間とチーム開発を行いました</li>
+                        <li>通っていたスクールの仲間とチーム開発を行いました(PJTへの関わり方、成果)</li>
                     </ul>
                 </p>
             </div>
@@ -33,6 +37,9 @@
             <div>
                 <h5>■Business</h5>
                 <p>前職で得た経験</p>
+                <p>冷静さ</p>
+<p>and more -> WANTEDLY &nbsp;<img src="../assets/wantedly_mark.png" alt="WANTEDLY logo" width="20" height="20">&nbsp; <a href="https://www.wantedly.com/users/140022507" target="_blank">Kichishima Naho</a></p>
+
             </div>
 
             <div>
@@ -40,8 +47,9 @@
                 <p>所持資格</p>
                 <p>
                     <ul>
-                        <li>TOEIC 740点</li>
-                        <li>ビジネス会計検定C級</li>
+                        <li>TOEIC 805点</li>
+                        <li>司書</li>
+                        <li>ビジネス会計検定3級</li>
                     </ul>
                 </p>
             </div>

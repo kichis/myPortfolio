@@ -6,7 +6,7 @@
             <div>
                 <h5>■Data</h5>
                 <p>Name: Kichishima Naho</p>
-                <p>Age: 29</p>
+                <p>Age: </p>
             </div>
 
             <div>
@@ -21,7 +21,29 @@
         </div>
         <div class="col-5 container">
             <h5>■Charactor</h5>
+            <p>性格(長所・短所)、好きなもの</p>
         </div>
     </div> 
 
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    data(){
+        return {
+
+            age:'',
+        }
+    },
+    methods:{
+        calcMyAge(){
+            // 年齢計算の式
+        },
+    },
+    setup() {
+        
+    },
+})
+</script>
