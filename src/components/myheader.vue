@@ -5,7 +5,8 @@
     :style="{left: leftPosition}">ほげほげ</div>
   </div> -->
 
-  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+  <!-- <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,6 +24,7 @@
       </ul>
     </div>
   </nav>
+
 </template>
 
 <script>
@@ -59,32 +61,26 @@ export default defineComponent({
   font-size: 1.2rem;
 }
 
-
 #navbar{
+  /* キャメル(カプチーノっぽい色) */
+  background-color: #bb8d5f;
+}
+
+/* 色候補 */
   /* マスタード？ */
   /* background-color: #ffcc40; */
-  /* オレンジ */
-  /* background-color: #Fd7e00; */
   /* マリーゴールド */
   /* background-color: #F79428; */
+  /* ゴールデンイエロー(落ち着いた黄色・オレンジ) */
+  /* background-color: #f4a800;    */
+  /* オレンジ */
+  /* background-color: #Fd7e00; */
   /* パンプキン */
   /* background-color: #e5a323;    */
-  /* ゴールデンイエロー */
-  /* background-color: #f4a800;    */
-  /* キャメル */
-  /* background-color: #bb8d5f; */
   /* コーヒーブラウン */
   /* background-color: #7d4a31; */
-}
-.nav-link{
-  /* color: #ffcc40; */
-
-}
-#search{
   /* ディープブルー  */
   /* background-color: #132c6f; */
-
   /* ラベンダーみたいな色 */
   /* background-color: rgba(59, 59, 250, 0.767); */
-}
 </style>

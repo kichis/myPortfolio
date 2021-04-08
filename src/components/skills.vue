@@ -1,5 +1,5 @@
 <template>
-    <h2>Skills</h2>
+    <h2 class="page_title">Skills</h2>
 
     <div class="row">
         <div class="col-5 container">

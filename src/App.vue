@@ -106,4 +106,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
+.page_title{
+  color: #9b564e;
+}
+
 </style>

@@ -51,13 +51,14 @@ export default {
 }
 
 #main_area h1{
-    color: rgb(194, 31, 31);
-    color: rgb(204, 62, 62);
-    /* color: ; */
     font-family: 'Sawarabi Gothic', sans-serif;
 }
 #main_area h1 span{
+    color: #9b564e;
+    /* color: rgb(204, 62, 62);
+    color: rgb(194, 31, 31); */
     font-family: 'Noto Serif JP', serif;
+    text-shadow:1px 0 1px black;
     /* 可視性はこちらの方がいいが目立たない */
     /* font-family: 'Sawarabi Mincho', sans-serif; */
     font-weight: bold;
