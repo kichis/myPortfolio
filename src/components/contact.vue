@@ -1,5 +1,5 @@
 <template>
-    <h2>Contact & SNS</h2>
+    <h2 class="page_title">Contact & SNS</h2>
 
     <h5>ご用の際には、TwitterのDMでご連絡ください(一番早くご返信できます)</h5>
 

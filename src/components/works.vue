@@ -1,5 +1,5 @@
 <template>
-    <h2>Works</h2>
+    <h2 class="page_title">Works</h2>
     <p>画像にカーソルを合わせると、説明が表示されます</p>
 
     <div class="row">
@@ -155,6 +155,7 @@
 </template>
 
 <style scoped>
+
 .linkToApp{
     /* background-color: coral; */
     background-color: rgb(255, 200, 81);

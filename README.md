@@ -48,6 +48,8 @@ URLのパラメーターはVueコンポーネント側ではpropsで受け取れ
 
  vue.jsとjQueryは共存させない方が良い
 
+// compositionAPIを使ってみる interfaceの箇所について、適切なloaderを入れよ、とのエラーが解決できなかったのでcomAPI諦め
+
 ## 学んだこと
 __Vue.js__
 - {{ プロパティ名 }} : vueのdataプロパティを出力
