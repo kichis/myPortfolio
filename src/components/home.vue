@@ -1,13 +1,13 @@
 <template>
     <div class="container">
 
-        <div class="row my-3">
+        <div class="row mb-3">
             <!-- 左側 -->
-            <div id="main_area" class="col-9 p-0">
-                <div class="h-50 d-flex justify-content-center align-middle">
-                    <h1 class="my-auto">Portfolio of <span>Kichishima Naho</span></h1>
+            <div id="main_area" class="col-8 pl-5 pr-0">
+                <div class="h-50 d-flex justify-content-center align-middle pl-5">
+                    <h1 class="mb-3 mt-auto">Portfolio of <span>Kichishima Naho</span></h1>
                 </div>
-                <div class="h-50 d-flex justify-content-center">
+                <div class="h-50 d-flex justify-content-center pl-5">
                     <a href="https://twitter.com/kichi12321" target="_blank" class="mr-4 my-auto">
                         <i class="fab fa-twitter fa-2x"></i>@kichi12321
                     </a>
@@ -21,11 +21,10 @@
                 </div>
             </div>
             <!-- 右側 -->
-            <div class="col-3 d-flex justify-content-start align-items-center p-0">
+            <div class="col-4 d-flex justify-content-center align-items-center pl-0 pr-5">
                 <!-- imgタグだけだとd-flexにより大きさが崩れるのでdivで囲む -->
                 <div>
-<!-- border -->
-                    <img  src="../assets/face.png" alt="my image" width="200" class="border">
+                    <img id="myimage" src="../assets/portrait_pencilversion.png" alt="my image" width="180" class="border">
                 </div>
             </div>
         </div>
@@ -80,4 +79,7 @@ export default {
     top:6px;
 }
 
+#myimage{
+    clip-path: polygon(0% 20%, 20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%)
+}
 </style>

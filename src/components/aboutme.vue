@@ -47,3 +47,10 @@ export default defineComponent({
     },
 })
 </script>
+
+<style scoped>
+/* clip-path: circle(45% at 50% 40%); */
+
+
+
+</style>
