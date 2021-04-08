@@ -12,78 +12,26 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
-        <!-- ※ポイント :active -->
-
-        <li class="nav-item"
-          v-for="component in state.components"
+        <li class="nav-item mx-4"
+          v-for="component in components"
           :key="component"
+          :class="{ active: isActive(component.path)}"
+          @click="changePage(component.path)"
         >
-        <!-- :class="{active: isActive()""} -->
-          <router-link to="/" class="nav-link">{{ component.name }}</router-link>
+          <router-link :to="component.path" class="nav-link">{{ component.name }}</router-link>
         </li>
-
-        <!-- <li class="nav-item"
-        :class="{active: isActive(name)}">
-          <router-link to="/about" class="nav-link">AboutMe</router-link>
-        </li>
-        <li class="nav-item"
-        :class="{active: isActive}">
-          <router-link to="/skills" class="nav-link">Skills</router-link>
-        </li>
-        <li class="nav-item"
-        :class="{active: isActive}">
-          <router-link to="/works" class="nav-link">Works</router-link>
-        </li>
-        <li class="nav-item"
-        :class="{active: isActive}">
-          <router-link to="/contact" class="nav-link">Contact & SNS</router-link>
-        </li> -->
-
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li> -->
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
-
     </div>
   </nav>
 </template>
 
-<script lang="ts">
-// compositionAPIを使ってみる
-import { reactive, defineComponent } from 'vue';
-
-// 型指定
-interface State{
-  currentPage: string,
-  components: Data[]
-}
-  // hasError: boolean;
-interface Data{
-  name: string,
-  path: string
-}
+<script>
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  setup() {
-    // data()のようなもの
-    const state = reactive<State>({
-      currentPage: 'Home',
+  data(){
+    return {
+      currentPage: location.pathname,
       components:[
         {name:'Home', path:'/'},
         {name:'AboutMe', path:'/about'},
@@ -91,21 +39,27 @@ export default defineComponent({
         {name:'Works', path:'/works'},
         {name:'Contact & SNS', path:'/contact'},
       ]
-  // hasError: false
-    })
-
-    // const isActive = () => {
-    //   return state.currentPage == 
-    // }
-    return {
-      state,
     }
   },
+  methods:{
+    isActive(path){
+      return this.currentPage == path
+    },
+    changePage(newPath){
+      this.currentPage = newPath
+    }
+  },
+
 })
 </script>
 
 
-<style>
+<style scoped>
+.nav-item{
+  font-size: 1.2rem;
+}
+
+
 #navbar{
   /* マスタード？ */
   /* background-color: #ffcc40; */
