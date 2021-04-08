@@ -23,6 +23,7 @@
 
 </template>
 
+
 <script>
 
 // import HelloWorld from './components/HelloWorld.vue'
@@ -93,19 +94,16 @@ export default {
 
 <style>
 #app {
-  
+  color: #303030;
+  font-family: 'Sawarabi Gothic', sans-serif;
   background-color: #f9f9f9;
-  /* background-color: #f4f5f7; */
   /* うすいクリーム色 */
   /* background-color: #fffcf5; */
 
   height: 100vh;
 
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #2c3e50; */
-  color: #303030;
 }
 </style>

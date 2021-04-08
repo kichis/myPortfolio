@@ -6,29 +6,39 @@
   </div> -->
 
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <!-- ※ポイント :active -->
-        <li class="nav-item active">
-          <router-link to="/" class="nav-link">Home</router-link>
+
+        <li class="nav-item"
+          v-for="component in state.components"
+          :key="component"
+        >
+        <!-- :class="{active: isActive()""} -->
+          <router-link to="/" class="nav-link">{{ component.name }}</router-link>
         </li>
-        <li class="nav-item">
+
+        <!-- <li class="nav-item"
+        :class="{active: isActive(name)}">
           <router-link to="/about" class="nav-link">AboutMe</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"
+        :class="{active: isActive}">
           <router-link to="/skills" class="nav-link">Skills</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"
+        :class="{active: isActive}">
           <router-link to="/works" class="nav-link">Works</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"
+        :class="{active: isActive}">
           <router-link to="/contact" class="nav-link">Contact & SNS</router-link>
-        </li>
+        </li> -->
+
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
@@ -55,11 +65,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+// compositionAPIを使ってみる
+import { reactive, defineComponent } from 'vue';
+
+// 型指定
+interface State{
+  currentPage: string,
+  components: Data[]
+}
+  // hasError: boolean;
+interface Data{
+  name: string,
+  path: string
+}
 
 export default defineComponent({
   setup() {
-    
+    // data()のようなもの
+    const state = reactive<State>({
+      currentPage: 'Home',
+      components:[
+        {name:'Home', path:'/'},
+        {name:'AboutMe', path:'/about'},
+        {name:'Skills', path:'/skills'},
+        {name:'Works', path:'/works'},
+        {name:'Contact & SNS', path:'/contact'},
+      ]
+  // hasError: false
+    })
+
+    // const isActive = () => {
+    //   return state.currentPage == 
+    // }
+    return {
+      state,
+    }
   },
 })
 </script>

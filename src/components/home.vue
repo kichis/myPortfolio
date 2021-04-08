@@ -1,10 +1,11 @@
 <template>
 <!--  -->
-    <div class="container bg-warning">
+    <div class="container">
+    <!-- <div class="container bg-warning"> -->
         <div class="row">
             <div id="main_area" class="col-9">
                 <div class="h-50 d-flex justify-content-center align-middle">
-                    <h1 class="my-auto">Portfolio of Kichishima Naho</h1>
+                    <h1 class="my-auto">Portfolio of <span> Kichishima Naho</span></h1>
                 </div>
 
                 <div class="h-50 d-flex justify-content-center">
@@ -18,7 +19,8 @@
             </div>
 
 <!--  -->
-            <div class="col-3 d-flex justify-content-center align-items-center bg-success">
+            <!-- <div class="col-3 d-flex justify-content-center align-items-center bg-success"> -->
+            <div class="col-3 d-flex justify-content-center align-items-center">
                 <!-- imgタグだけだとd-flexにより大きさが崩れるのでdivで囲む -->
                 <div>
 <!-- border -->
@@ -47,6 +49,27 @@ export default {
 #main_area{
     height: 50vh;
 }
+
+#main_area h1{
+    color: rgb(194, 31, 31);
+    color: rgb(204, 62, 62);
+    /* color: ; */
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+#main_area h1 span{
+    font-family: 'Noto Serif JP', serif;
+    /* 可視性はこちらの方がいいが目立たない */
+    /* font-family: 'Sawarabi Mincho', sans-serif; */
+    font-weight: bold;
+    letter-spacing: 2px;
+    /* 個性(アク)が強そう */
+    /* font-family: 'Dela Gothic One', cursive; */
+    /* トイっぽいガチャガチャ感 */
+    /* font-family: 'RocknRoll One', sans-serif; */
+    /* 子供っぽい */
+    /* font-family: 'Yusei Magic', sans-serif; */
+}
+
 
 /* 
 

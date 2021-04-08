@@ -1,5 +1,11 @@
 <template>
-    <h2>Works</h2>
+    <h2 
+
+    >Works</h2>
+    <!-- style="font-family: 'Sawarabi Mincho', sans-serif;" -->
+    <!-- style="font-family: 'Noto Serif JP', serif;" -->
+    <!-- style="font-family: 'RocknRoll One', sans-serif;" -->
+    <!-- style="font-family: 'Dela Gothic One', cursive;" -->
     <p>画像にカーソルを合わせると、説明が表示されます</p>
 
     <div class="row">
