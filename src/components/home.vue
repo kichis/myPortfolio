@@ -1,9 +1,9 @@
 <template>
     <div class="container">
 
-        <div class="row">
+        <div class="row my-3">
             <!-- 左側 -->
-            <div id="main_area" class="col-9">
+            <div id="main_area" class="col-9 p-0">
                 <div class="h-50 d-flex justify-content-center align-middle">
                     <h1 class="my-auto">Portfolio of <span>Kichishima Naho</span></h1>
                 </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <!-- 右側 -->
-            <div class="col-3 d-flex justify-content-center align-items-center">
+            <div class="col-3 d-flex justify-content-start align-items-center p-0">
                 <!-- imgタグだけだとd-flexにより大きさが崩れるのでdivで囲む -->
                 <div>
 <!-- border -->
