@@ -1,6 +1,5 @@
 <template>
-<!--  -->
-    <div class="container border">
+    <div class="container">
         <button @click="backwardPage" class="btn btn-light align-top">
             <span class="carousel-control-prev-icon"></span>
         </button>
@@ -152,8 +151,6 @@ button{
     clip-path: inset(0);
     position: relative;
     display: inline-block;
-    /*  */
-    /* border: 1px solid red; */
 }
 @media (min-width: 1190px) {
     .clipping-container {
@@ -170,8 +167,8 @@ button{
 .page {
     height: 200px;
     width: 250px;
-    margin: 0 30px;
     box-sizing: border-box;
+    margin: 0 30px;
 }
 @media (min-width: 1190px) {
     .page {
@@ -180,20 +177,20 @@ button{
 }
 
 .dots {
-    width: 50px;
+    width: 70px;
     display: flex;
     justify-content: space-between;
-    margin: auto;
-    margin-bottom: 16px;
+    margin: 16px auto;
+    /* margin-bottom: ; */
 }
 .dot {
-    height: 8px;
-    width: 8px;
+    height: 9px;
+    width: 9px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
 }
 .dot-current {
-    background-color: skyblue;
+    background-color: #bb8d5f;
 }
 </style>
