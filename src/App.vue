@@ -109,6 +109,7 @@ export default {
 
 .page_title{
   color: #9b564e;
+  margin: 3% 0;
 }
 
 </style>
