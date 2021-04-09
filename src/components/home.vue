@@ -52,6 +52,7 @@ export default {
 
 #main_area h1{
     font-family: 'Sawarabi Gothic', sans-serif;
+    letter-spacing: 1px;
 }
 
 #main_area h1 span{
