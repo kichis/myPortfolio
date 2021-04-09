@@ -3,28 +3,20 @@
 
         <h2 class="page_title">Contact & SNS</h2>
 
-        <h5>ご用の際には、TwitterのDMでご連絡ください(一番早くご返信できます)</h5>
+        <h6 class="text-muted">TwitterのDMか、Facebookのmessengerが一番早くご返信できます</h6>
 
-        <!-- <h5>■links</h5> -->
-        <table class="table w-50 mx-auto">
+        <table class="table table-borderless mx-auto mt-5">
             <tr
             v-for="sns in SNSs" :key="sns"
             >
                 <td class="text-right">{{ sns.name }}</td>
-                <td class="text-left" v-html="sns.img"></td>
-                <td><a :href="sns.url" target="_blank">{{ sns.account }}</a></td>
+                <td class="text-left"
+                :class="{ 'pl-0': isQiita(sns.name) }"
+                v-html="sns.img"
+                ></td>
+                <td class="w-50"><a :href="sns.url" target="_blank">{{ sns.account }}</a></td>
             </tr>
         </table>
-        <!-- <p>
-            <ul>
-                <li>Twitter &nbsp;<i class="fab fa-twitter"></i> &nbsp; <a href="https://twitter.com/kichi12321" target="_blank">@kichi12321</a></li>
-                <li>WANTEDLY &nbsp;<img src="../assets/wantedly_mark.png" alt="WANTEDLY logo" width="20" height="20">&nbsp; <a href="https://www.wantedly.com/users/140022507" target="_blank">Kichishima Naho</a></li>
-                <li>GitHub &nbsp;<i class="fab fa-github"></i>&nbsp; <a href="https://github.com/kichis" target="_blank">kichis</a></li>
-                <li>Qiita &nbsp; <img src="../assets/qiita-favicon.png" alt="qiita logo" width="40" height="20"> &nbsp; <a href="https://qiita.com/kichi12321" target="_blank">@kichi12321</a></li>
-                <li>Facebook &nbsp;<i class="fab fa-facebook-square"></i>&nbsp; <a href="https://www.facebook.com/naho.kichishima/" target="_blank">Naho Kichishima</a></li>
-            </ul>
-        </p> -->
-
     </div>
 </template>
 
@@ -47,11 +39,17 @@ export default defineComponent({
                   url:'https://github.com/kichis', 
                   account:'kichis' },
                 { name:'Qiita', 
-                  img: '<img src='+require("../assets/qiita-favicon.png")+' alt="qiita logo" width="40" height="20">',  url:'https://qiita.com/kichi12321', 
+                  img: '<img id="qiita_img" src='+require("../assets/qiita-favicon.png")+' alt="qiita logo" width="40" height="20" style="clip-path: circle(30%);position:relative;left:-50;">',  
+                  url:'https://qiita.com/kichi12321', 
                   account:'@kichi12321' },
                 { name:'Facebook', 
                   img: '<i class="fab fa-facebook-square"></i>', url:'https://www.facebook.com/naho.kichishima/', account:'Naho Kichishima' },
             ]
+        }
+    },
+    methods: {
+        isQiita(sns){
+            return sns == 'Qiita'
         }
     }
 })
@@ -60,5 +58,19 @@ export default defineComponent({
 <style scoped>
 .container{
     height: 80%;
+}
+
+.table{
+    width: 30%;
+}
+
+#qiita_img{
+
+    background-color: red;
+    clip-path: circle(50%);
+}
+
+a{
+  text-decoration: none;
 }
 </style>
