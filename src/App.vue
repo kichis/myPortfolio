@@ -107,8 +107,11 @@ export default {
   text-align: center;
 }
 
+
 .page_title{
   color: #9b564e;
+  letter-spacing: 2px;
+  text-shadow: 1px 0 0 black;
   margin: 3% 0;
 }
 
