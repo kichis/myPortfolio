@@ -93,14 +93,16 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: #f9f9f9;
+}
+
 #app {
   color: #303030;
   font-family: 'Sawarabi Gothic', sans-serif;
-  background-color: #f9f9f9;
   /* うすいクリーム色 */
   /* background-color: #fffcf5; */
 
-  height: 100vh;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
