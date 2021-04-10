@@ -34,10 +34,21 @@
                     <h4>Business</h4>
                     <table class="table table-borderless">
                         <tr class="border-top">
-                            <td>前職で得た経験 冷静さ</td>
+                            <td>リスクチェックをして物事を確実に進めていく</td>
+                        </tr>
+                            <td>職場のバランサー</td>
+                        <tr>
                         </tr>
                         <tr>
-                            <td>and more -> WANTEDLY &nbsp;<img src="../assets/wantedly_mark.png" alt="WANTEDLY logo" width="20" height="20">&nbsp; <a href="https://www.wantedly.com/users/140022507" target="_blank">Kichishima Naho</a></td>
+                            <td>
+                                <span class="border-bottom border-dark">
+                                    ... and more <i class="far fa-hand-point-right"></i>
+                                </span>
+                                <a href="https://www.wantedly.com/users/140022507" target="_blank" class="ml-3">
+                                    <img src="../assets/wantedly_mark.png" alt="WANTEDLY logo" width="30" height="35" class="pb-1">
+                                    Kichishima Naho
+                                </a>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -46,16 +57,15 @@
                     <h4>Other</h4>
                     <table class="table table-borderless mx-auto">
                         <tr class="border-top">
-                            <td class="text-right" width="50%">TOEIC</td>
-                            <td class="text-left">805点</td>
+                            <td class="text-right pr-3" width="50%">TOEIC</td>
+                            <td class="text-left pl-3">805点</td>
                         </tr>
                         <tr>
-                            <td>司書</td>
-                            <!-- <td></td> -->
+                            <td class="text-right pr-3">ビジネス会計検定</td>
+                            <td class="text-left pl-3">3級</td>
                         </tr>
-                        <tr>
-                            <td>ビジネス会計検定</td>
-                            <td class="text-left">3級</td>
+                        <tr>                            
+                            <td class="text-center" colspan="2">司書</td>
                         </tr>
                     </table>
                 </div>
