@@ -121,7 +121,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title">{{ ARcard.title }}</h5>
-                            <p class="card-text">{{ ARcard.text }}</p>
+                            <p class="card-text text-left"><span v-html="ARcard.text"></span></p>
                             <!-- 使用技術エリア -->
                             <div class="py-2">
                                 <template v-if="ARcard.techs.includes('unity')">
@@ -177,49 +177,21 @@
                 class="text-left"
                 :style="{ display : detailDisplay, top : detailTop, left : detailLeft }"
             >
-                <h6 class="my-3 ml-3" style="text-shadow:1px 0 0 black"><b>ポイント</b></h6>
-                <ol>
+                <h6 id="point_title" class="my-3 ml-3"><b>Points</b></h6>
+                <ol class="mb-3 ml-0 mr-2">
                     <span v-html="pointText"></span>
                 </ol>
-                <h6 class="my-3 ml-3"><b>why?</b></h6>
+                <hr class="text-dark" width="90%">
+                <p id="deteil_text" class="m-3 my-4">
                     <span v-html="reasonText"></span>
+                </p>
             </div>
         </div>
 
     </div>
 </template>
 
-<style scoped>
-#works_container{
-    margin: auto 5%;
-}
 
-#web_area{
-    background-color: rgba(232, 232, 232, 0.193);
-    /* clip-path: polygon(0% 1%, 1% 0%, 99% 0%, 100% 1%, 100% 99%, 99% 100%, 1% 100%, 0% 99%) */
-}
-
-.linkToApp{
-    border: 3px outset #bb8d5f;
-    color:  #bb8d5f;
-}
-
-#login_text{
-    color: #bb8d5f;
-}
-
-#detail_area{
-    width: 400px;
-    /* color: #303030; */
-    color: white;
-    /* background-color: rgba(211, 210, 210, 0.97); */
-    background-color: #bb8d5ff5;
-    border: 2px dotted #bb8d5f;
-    border-radius: 7px;
-    position: absolute;
-    z-index: 10;
-}
-</style>
 
 <script>
 export default {
@@ -232,7 +204,7 @@ export default {
             webcards :[
                 {name: 'reincarnation',
                  title : '『転生したら〇〇〇〇だった件』',
-                 text : '質問の答えると、"あなたが転生したらどんな妖怪になるか"を判定してくれるwebアプリ',
+                 text : '"あなたが転生したらどんな妖怪になるか"を判定してくれるwebアプリ',
                  img : require('../assets/reincarnation.png'),
                  url : "http://kichis.sakura.ne.jp/reincarnation_which_yohkai",
                  github : "https://github.com/kichis/reincarnation_which_yohkai",
@@ -240,7 +212,7 @@ export default {
                 },
                 {name : 'daihonzan',
                  title : '『大本山Learning』',
-                 text : 'Bing Map上に寺院の位置がピンで示されており、クリックするとどの宗派の寺院かを問うクイズが出現するwebアプリ<br>(<span class="text-danger">※正否判定時に音がでます</span>)',
+                 text : 'お寺の位置がBing Map上に示されており、クリックするとどの宗派のお寺かを問うクイズが出現するwebアプリ<br>(<span class="text-danger">※正否判定時に音がでます</span>)',
                  img : require('../assets/daihonzan3.png'),
                  url : "http://kichis.sakura.ne.jp/daihonzan_learning/",
                  github : false,
@@ -248,7 +220,7 @@ export default {
                 },   
                 {name : 'hiroshige',
                  title : '『HiRoShIgE』',
-                 text : 'Bing Map上に東海道五十三次の11の宿場がピンで示されており、クリックするとその宿場に関するクイズがだされるwebアプリ<br>(<span class="text-danger">※虫が苦手な方はご注意ください</span>)',
+                 text : '東海道五十三次のうち11の宿場がBing Map上に示されており、クリックするとその宿場に関するクイズが出現するwebアプリ<br>(<span class="text-danger">※虫が苦手な方はご注意ください</span>)',
                  img : require('../assets/hiroshige.png'),
                  url : "http://kichis.sakura.ne.jp/hiroshige_2021/",
                  github : false,
@@ -266,7 +238,7 @@ export default {
             ARcards : [
                 {name : 'kitsune_no_mado',
                  title : '『きつねの窓』',
-                 text : 'iPhoneで計測した歩数に応じて、妖怪がARで出現するアプリ。<br>(上の埋め込み動画が再生できない場合は、デモ動画ボタンでも同じ動画が見られます)',
+                 text : 'iPhoneの歩数計測機能と妖怪が出現するARを組み合わせたアプリ。<br>(上の埋め込み動画が再生できなければ、デモ動画ボタンでも同じ動画が見れます)',
                  img : require('../assets/kitsune_moviex2.mp4'),
                  url : 'https://drive.google.com/file/d/1tz7HEZsOyYyCQqSy4WSpRNlmsgip-Vf_/view?usp=sharing',
                  github : false,
@@ -286,54 +258,56 @@ export default {
             ],
             details :[
                 // id:0
-                {point : "<li>フレームワークを使わずにJavaScriptでSPAを実装</li>"+
-                        "<li>回答途中のユーザのイレギュラーな動き(リロード、ブラウザの戻るボタン押下、前の問題に戻る、など)があっても、結果判定の仕組みや表示コンポーネントが崩れないように調整</li>"+
+                {point : "<li>フレームワークを使わずJavaScriptでSPAを実装</li>"+
+                        "<li>回答途中のユーザのイレギュラーな動き(リロード、ブラウザの戻るボタン押下、など)を想定し、結果判定や表示コンポーネントが崩れないように調整</li>"+
                         "<li>スマホ、タブレット、PCへのレスポンシブ対応</li>"+
-                        "<li>結果をtwitterに投稿可能</li>",
-                 reason : '<p>ここ何年か「転生もの」ジャンルの漫画が人気なので、私が好きな"妖怪"をテーマとした転生診断アプリを作りました。<br>'+
-                 'ユーザには「気楽に楽しく」遊んでもらいたいので、ポップな色やイラスト、文章を使用しています。<br>'+
-                 'また、SPAのことを調べた際、(フレームワークによって実現するものだと思っていたSPAが)Vanilla JSでも書ける！ということを知って興味が湧き、表示切り替えはVanilla JSでのSPAで実装しています。<br>'+
-                 '</p>'
+                        "<li>判定結果をTwitterに投稿可能</li>",
+                 reason : '最近、「異世界転生」系の漫画をよく見かけるので、私が好きな"妖怪"をテーマとして転生診断アプリを作りました。<br>'+
+                 'ユーザには"気楽に楽しく"遊んでもらいたいので、ポップな色やイラスト・文章にしています。<br>'+
+                 'また、SPAについて、(フレームワークによって実現するものだと思っていたが)ノーマルなJavaScriptでも書けるということを知って興味が湧き、'+
+                 'ノーマルなJSによるSPAで表示切り替えを実装しました。'
                 },
                 // id:1
                 {point : 
-                "<p>1. Tailwindの既定の色の豊富さを活かした、緑を基調とする統一感のあるデザイン<br>"+
-                   "2. 正解・不正解のアクションを”お寺”というテーマに合わせたものに</p>",
+                 "<li>Tailwindで用意されている色の豊富さを活かした、統一感のあるカラーリング</li>"+
+                 "<li>”お寺”というテーマに合わせた正解・不正解のアクション</li>",
                  reason : 
-                 '<p>仏教は日本の文化や習慣に大きな影響を与えていますが、名前を知っているような有名なお寺であってもどこの宗派かということまでは知らないな、という気付きがあり作成しました。<br>'+
-                 'ぜひ、正解・不正解両方のアクションをご覧ください</p>'
+                 '名前は知っているような有名なお寺であっても、どこの宗派かということまでは知らないな、という気付きがあり作成しました。<br>'+
+                 '"お寺"というテーマに合うよう、落ち着き・癒しを感じられる緑をテーマカラーとし、部分によって濃淡をつけています。<br>'+
+                 '正否判定時のアクションも"お寺"に合わせたものになっていますので、ぜひ正解・不正解の両方をお試しください。'
                 },
                 // id:2
                 {point : 
-                "<p>1. 東海道五十三次の道のりが地形からも感じられるよう、航空写真の地図を採用<br>"+
-                   "2. 宿場イメージとして歌川広重の浮世絵を掲載</p>",
+                 "<li>東海道五十三次の道のりが地形からも感じられる航空写真の地図</li>"+
+                 "<li>宿場イメージは歌川広重の浮世絵</li>",
                  reason : 
-                 '<p>Bing Map APIを使用したアプリを作るにあたり、地図といえば旅、旅といえば東海道、という着想から作成しました。<br>'+
-                 '東海道に沿うように、11の宿場は地域的に満遍なくピックアップ。歌川広重の描いた活きいきとした浮世絵を載せることで、ユーザにより宿場の雰囲気を味ってもらえるようになっています。</p>'},
+                 'Bing Map APIを使用してアプリを作るにあたり、地図といえば旅、旅といえば東海道、という着想から作成しました。<br>'+
+                 '11の宿場は、東海道に沿うよう、地域的に満遍なくピックアップ。地図表示は航空写真をデフォルトにしているので、昔の旅人がどのあたりで山を越え、川を渡ったのかを地形から追うことができます。<br>'+
+                 'さらに、宿場の人々の活き活きとした様子が描かれた浮世絵も表示されるので、より宿場の雰囲気を味わえるようになっています。'},
                 // id:3
                 {point : 
-                "<p>1. ユーザが投稿を読んだ恐怖を伝えられる「怖！」ボタン<br>"+
-                   "2. 特別ページに遷移する隠しリンク(copyrightsのあたり)<br>"+
-                   "3. ブラックリストユーザのログアウト時に起きるドッキリイベント<br>"+
-                   "4. 和風ホラーの雰囲気に浸れるデザイン</p>",
+                 "<li>投稿を読んで感じた恐怖を伝えられる「怖！」ボタン</li>"+
+                 "<li>特別ページに遷移する隠しリンク(copyrightsのあたり)</li>"+
+                 "<li>ブラックリストユーザのログアウト時に起きるドッキリイベント</li>"+
+                 "<li>ホラーの雰囲気に浸れるデザイン</li>",
                  reason : 
-                 '<p>手軽に怖い話を読めたり書けたりしつつ、サイト自体に面白い仕掛けがある怪談ウェブサイトがあるといいな、という考えから作りました。<br>'+
+                 '気軽に怖い話を読んだり投稿したりできて、サイト自体に面白い仕掛けがある怪談ウェブサイトがあるといいな、と思い作りました。<br>'+
                  'ブラックリストユーザでのログイン＆ログアウトはぜひお試しください！<br>'+
-                 'また、管理者用画面では、意図しない編集操作を防止するため、レコードにチェックを入れることでそのレコードが編集可能となるようにしています。</p>'},
+                 'また、管理者用画面では、意図しない編集操作を防止するため、レコードにチェックを入れることでそのレコードが編集可能となる仕様にしています。'},
                 // id:4
                 {point : 
-                "<p>1. 現実世界のユーザの動き(歩数)に連動してゲームが進むシステム<br>"+
-                   "2. マイナーな妖怪も登場<br>"+
-                   "3. 妖怪の詳しい説明が読める図鑑付き<br>"+
-                   "4. 自作の妖怪３D</p>",
+                   "<li>ユーザの歩数に応じてゲームが進む</li>"+
+                   "<li>マイナーな妖怪も出現</li>"+
+                   "<li>妖怪３Dは自作</li>"+
+                   "<li>妖怪の詳しい説明が読める図鑑付き</li>"
+                   ,
                  reason : 
-                 '<p>ARの”現実世界にバーチャルなものが映し出されるワクワク感”にハマり、ARアプリに挑戦しました。<br>'+
-                 'アプリの内容は、iPhoneで計測した歩数に応じて、日本地図上に道が伸びていき、その道が特定のポイントに到達すると妖怪が出現、ARで呼び出せるようになる、というものです。<br>'+
-                 'ユーザが日本のどこに住んでいてもに身近に感じてもらえるよう、地図に伸びる道は、なるべく多くの地域を巡るようにしています。<br>'+
-                 '出現させるオブジェクトを妖怪にしたのは、ARの"現実とバーチャルが重なる"という特性が妖怪の存在感とマッチすることが一つ、<br>'+
-                 'もう一つは、妖怪には地域性のあるものもいるため、”日本全国を巡る”という仕様に合わせ、出現地に関係のあるものを選ぶことができるからです。<br>'+
-                 'また、あまり知られていないようなマイナーな妖怪も加え、”新たなモノに出会う”楽しさをより感じられるようにしました。<br>'+
-                 '初めて挑戦することが多く大変でしたが、"自分で調べて実装する"ということを積み上げてものを作ることの楽しさを実感できました。</p>'
+                 'ARの"現実世界にバーチャルなものが映し出されるワクワク感"にハマり、ARアプリに挑戦しました。<br>'+
+                 'アプリの内容は、iPhoneで計測した歩数に応じて日本地図上に道が伸びていき、その道が特定のポイントに到達すると妖怪が出現、ARで呼び出せるようになる、というものです。<br>'+
+                 'ユーザが日本のどの地域に住んでいてもに身近に感じてもらえるよう、地図上の道は、なるべく多くの地域を巡るルートにしています。<br>'+
+                 '出現する妖怪はなるべく出現地に関係のあるものを選び、'+
+                 'また、あまり知られていないようなマイナーな妖怪も取り入れ、"新たなモノに出会う"楽しさをより感じてもらえるようにしました。<br>'+
+                 '初めて挑戦することが多く、製作は大変でしたが、"自分で調べて実装する"という作業を積み上げてものを作ることの楽しさを実感できました。'
                 },
             ]
         }
@@ -372,7 +346,7 @@ export default {
                     break;
                 case "left":
                     // ページ左端 ~ 対象カード左端 までの距離 - 450(#detail_areaのwidth分+間隔) を返す
-                    result = eObject.target.closest(".card").getBoundingClientRect().left + window.pageXOffset - 450
+                    result = eObject.target.closest(".card").getBoundingClientRect().left + window.pageXOffset - 500
                     break;
                 default:
                     break;
@@ -405,3 +379,53 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+#works_container{
+    margin: auto 5%;
+}
+
+#web_area{
+    background-color: rgba(232, 232, 232, 0.193);
+    /* clip-path: polygon(0% 1%, 1% 0%, 99% 0%, 100% 1%, 100% 99%, 99% 100%, 1% 100%, 0% 99%) */
+}
+
+.linkToApp{
+    border: 3px outset #bb8d5f;
+    color:  #bb8d5f;
+}
+
+#login_text{
+    color: #bb8d5f;
+}
+
+#detail_area{
+    width: 40%;
+    /* color: #303030; */
+    color: white;
+    /* background-color: rgba(211, 210, 210, 0.97); */
+    background-color: #bb8d5ff5;
+    border: 2px dotted #bb8d5f;
+    border-radius: 7px;
+    position: absolute;
+    z-index: 10;
+}
+@media (min-width: 1000px) {
+    #detail_area{
+        width: 30%;
+    }
+}
+@media (min-width: 1300px) {
+    #detail_area{
+        width: 450px;
+    }
+}
+
+#point_title{
+    text-shadow:1px 0 0 black
+}
+
+#deteil_text{
+    color: black;
+}
+</style>

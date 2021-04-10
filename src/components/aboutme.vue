@@ -69,7 +69,7 @@ export default defineComponent({
             charactors: [
                 { div:'Strength', item: ['落ち着き', '好奇心', '物事をコツコツ進められる']},
                 { div:'Weakness', item: ['緊張しやすい', '飽き性', '慎重']},
-                { div:'Likes & Interests', item: ['旅行', '本', '葛飾北斎', '新しいもの・こと', '三項演算子']},
+                { div:'Likes & Interests', item: ['旅行', '本', '葛飾北斎', '新しいもの・こと', '三項演算子', 'コーヒー']},
             ],
         }
     },
