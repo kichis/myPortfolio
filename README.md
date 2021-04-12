@@ -24,17 +24,17 @@
 ## 学んだこと
 ##### Vue.js
 - HTMLへの出力: {{ プロパティ名 }}
-- 
-- 通常のJSのDOM取得方法(idやclassによる方法)は使えないし、あまり使う必要がないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
+- 通常のJSのDOM取得方法(idやclassによる方法)は使えず、あまり使う必要もないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
+  DOM `ref="pages"`  
+  script  
+  `mounted() {
+        `const targetElement = this.$refs.pages
+        `this.pages = targetElement
+   `},
 - _.debounce/_.throttle(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
   負荷の高い処理などに使う。
 - DOMの取得方法  
-  DOM : `ref="pages"`  
-  script : 
-  `mounted() {
-        const targetElement = this.$refs.pages
-        this.pages = targetElement
-   },`
+
 - jQueryの書き方  
   `import jQuery from 'jquery'
    global.jquery = jQuery
@@ -72,32 +72,34 @@ __v- ディレクティブ__
   (インラインに全て記述せず、オブジェクト・配列・三項演算子などの形式で、dataプロパティやcomputedに記述することも可能。)  
   - class : class名に対応して与えたdataプロパティの __真偽値__ によって、そのclassを適用するか決まる。 
   - style : style名に対して、値を与える。style名は、キャメルケースorケバブケース。 
-  - imgタグsrcの記述 (vue cli webpackを使っている場合) :  
+  - __imgタグsrcの記述__ (vue cli webpackを使っている場合) :  
     1. src属性にベタ打ち -> 画像パスはbase64でエンコードして出力される  
     2. v-bind使用 -> base64エンコードではなくそのままの文字列が出力される = 画像が表示されない  
        => dataプロパティ内の記述を、 __`require(画像パス)`__ とする (= これはベタ打ちの場合に裏側でなされている処理と同じ)  
           \[g]該当画像ファイルがない場合、エラーになる
-  
-- v-if : 与えた式の真偽で要素を描画する/しない
-- v-html : dataプロパティ内にHTMLタグがあれば、HTMLタグとして変換して出力
-- v-model : formタグ関係の双方向データバインディング
-
+- `<templete v-if="条件式">要素</templete>` : 条件式の真偽で要素を描画する/しない。
+- v-html : データをHTMLとして変換して出力
+- v-model : formタグ関係の双方向データバインディング  
 
 __export default内__
-- dataプロパティの配列に代入する時は、x[0] = "hoge"でなく、x.splice(0, 1, "hoge")とする。(さもなくば、リアクティブな動作にならない)
-- 「scriptタグの中はJSの世界、export defaultの中はVueの世界」
-- export default外のJS変数をexport default内で使う場合は、dataプロパティとして宣言？する。  
-  プロパティ名 : JS変数名
-- mothods : 関数。再描画が起きるたびに"常に"関数を実行する。  
-- computed : 依存関係にあるリアクティブなデータが変化した時に"だけ"、自動で算出される。  
+- 「scriptタグの中はJSの世界、export defaultの中はVueの世界」  
+- dataプロパティ
+  - export default外のJS変数をexport default内で使う場合は、dataプロパティに宣言？する。  
+    プロパティ名 : JS変数名
+  - dataプロパティの配列の要素に代入する :  
+    \[no] `x[0] = "hoge"` => リアクティブな動作にならない  
+    \[yes] `x.splice(0, 1, "hoge")`  
+- methods : 関数。 __再描画が起きるたびに"常に"関数を実行__ する。  
+- computed : 依存関係にあるリアクティブな __データが変化した時に"だけ"__ 、自動で算出される。  
   (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
-  methodsでは問題ない記述でも、computedではエラーになる場合がある = unexpected side effect (予想外のdataプロパティを変更しようとするとこれになるようだ)
-- watch(監視するリアクティブ変数, 関数(newValue, oldValue))
-  非同期処理、処理間隔の設定、中間状態の設置はwatchのみで、computedにはできない。
+  methodsでは問題ない記述でも、computedではエラーになる場合がある  
+  (ex. unexpected side effect = 予想外のdataプロパティを変更しようとしたとき )
+- watch(監視するリアクティブ変数, 関数(newValue, oldValue))  
+  : 非同期処理、処理間隔の設定、中間状態の設置ができるのはwatchのみ。computedにはできない。
 - filters : dataプロパティの値が出力される前に加工する。  
-コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある  
-=> Vue3で廃止！！
-- transition : DOMの"生成・消滅に伴って"アニメーションを付けられる機能。要素が複数個ある場合は、transition-group。
+  コンポーネントを問わないグローバルの書き方と、記述したコンポーネントに限られるローカルの書き方がある。  
+  => __filtersはVue3で廃止！！__
+- transition : __DOMの"生成・消滅に伴って"__ アニメーションを付けられる機能。要素が複数個ある場合は、transition-group。
 
 __Composition API__
 [参照](https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)
