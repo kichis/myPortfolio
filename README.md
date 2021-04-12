@@ -1,4 +1,8 @@
 # portfolio
+2021.04 
+
+## 使用技術
+<img src="src/assets/HTML5_Logo_128.png" width="100" title="JavaScript">
 
 ## Project setup
 ```
