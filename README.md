@@ -2,7 +2,11 @@
 2021.04 
 
 ## 使用技術
-<img src="src/assets/HTML5_Logo_128.png" width="100" title="JavaScript">
+<img src="src/assets/HTML5_Logo_128.png" width="100" title="HTML5">
+<img src="src/assets/CSS3_logo_and_wordmark.png" width="100" title="CSS3">
+<img src="src/assets/bootstrap-purplebase.svg" width="100" title="Bootstrap">
+<img src="src/assets/javascript_logo.png" width="100" title="JavaScript">
+<img src="src/assets/logo.png" width="100" title="Vue">
 
 ## Project setup
 ```
