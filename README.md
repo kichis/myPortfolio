@@ -93,8 +93,8 @@ __export default内__
     \[o] `x.splice(0, 1, "hoge")`  
 - methods : 関数。 __再描画が起きるたびに"常に"関数を実行__ する。  
 - computed : 依存関係にあるリアクティブな __データが変化した時に"だけ"__ 、自動で算出される。  
-  (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
-  methodsでは問題ない記述でも、computedではエラーになる場合がある  
+  (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)  
+  methodsでは問題ない記述でも、computedではエラーになる場合がある。  
   (ex. unexpected side effect = 予想外のdataプロパティを変更しようとしたとき )
 - watch(監視するリアクティブ変数, 関数(newValue, oldValue))  
   : 非同期処理、処理間隔の設定、中間状態の設置ができるのはwatchのみ。computedにはできない。
@@ -104,26 +104,27 @@ __export default内__
 - transition : __DOMの"生成・消滅に伴って"__ アニメーションを付けられる機能。要素が複数個ある場合は、transition-group。
 
 __vuex__  
-: 状態管理（データ）を助けるライブラリ。コンポーネントを超えて、  
+: 状態管理（データ）を助けるライブラリ。  
   - 導入した方が良い場合 ： アプリ全体でデータを共有したい、そのデータを加工したい、データの流れがきれいになる？（変更履歴が可視化される？） 
   - 導入しなくても良い場合：コンポーネント内だけでデータを扱う
 
 __Composition API__  
-[こちら]を参照(https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)  
-`<script lang="ts">
+```
+<script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({})
-</script>`  
-Vue2での以下の問題点を解決する  
+</script>
+```  
+Vue2での以下の問題点を解決する([こちら](https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)を参照  )  
 - TypeScriptのサポート
 - ロジックの再利用の難しさ
 - アプリケーションが巨大になると、コードの把握が難しくなる  
 
 
 export default内のプロパティ
-- data => リアクティブなデータを格納する２形態 : reactive(オブジェクトとして宣言、参照) / ref(単一の変数として宣言できる、templete以外から参照する時は".value"を付ける) 　
-- components・props => 以前と同じ
-- date・methods・computed・ライフサイクルメソッド => 全てsetupメソッドの中に記述、templete内で使うものだけreturn  
+- __data__ => リアクティブなデータを格納する２形態 : reactive(オブジェクトとして宣言、参照) / ref(単一の変数として宣言できる、templete以外から参照する時は".value"を付ける) 　
+- __components・props__ => 以前と同じ
+- __date・methods・computed・ライフサイクルメソッド__ => 全てsetupメソッドの中に記述、templete内で使うものだけreturn  
   \[o] "this"が不要になった = アロー関数が使える  
   \[o] returnで使用できる値を明示することで、データのアクセスを管理できる  
     - methods => JSの関数と同じ
@@ -135,15 +136,15 @@ __Vue3から追加された機能__
 - teleportタグ : このタグで囲んだコンポーネントを、toで指定した場所に動的にレンダリングできる
 - filterプロパティ 廃止  
 
-__その他__
+__other__
 - カルーセルに関しては、[こちら](https://zenn.dev/kazuwombat/articles/fea3428a0b888c8fb3ac)を参考にさせてもらいました。
 
 ##### その他
 __JS__
-- `element.closest(".hoge")` // elementの祖先要素のうち、class="hoge"のものを探す
-- `element.getBoundingClientRect()` // elementの「ビューポート(画面内)」における位置を取得
-- `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
-- `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
+- `element.closest(".hoge")`  elementの祖先要素のうち、class="hoge"のものを探す
+- `element.getBoundingClientRect()`  elementの「ビューポート(画面内)」における位置
+- `element.getBoundingClientRect().top`  画面の上端から、要素の上端までの距離
+- `element.getBoundingClientRect().top + window.pageYOffset`  その「ページ」の上端から、要素の上端までの距離取得
 - noop : 空の関数 = no operation = function(){}  
 
 __CSS__
