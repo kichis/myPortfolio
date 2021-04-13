@@ -153,10 +153,6 @@ __CSS__
 - transition : 変化の仕方  
   他、アニメーションするには、@keyframesやanimationなど。  
 
-__VScode__
-option + comm + 上下 : 複数行選択
-option + <- / -> : そのまとまりの区切りまで  
-
 __other__
 - エイリアス(alias) : 別名、ショートカット 
 - 相対パスより絶対パス - 記述ファイルの設置場所を変えても有効だから。
@@ -165,7 +161,7 @@ __other__
     (パスで".vue"拡張子が不要なのも、このオプションによるものらしい。[出典](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack))
 
 ## 反省
-- [good] Vue3に挑戦した事で、製作しながらVue2からの変更点を知ることができた。
-- [bad] 下調べ不足：UI構築ライブラリがVue3に対応していないことを製作を始めてから知った。
-- [b] Vue3の特徴の一つである、compositionAPIを活かしきれなかった。
+- \[o] Vue3に挑戦した事で、製作しながらVue2からの変更点を知ることができた。
+- \[x] 下調べ不足：UI構築ライブラリがVue3に対応していないため、UI構築に時間がかかった。
+- \[x] Vue3の特徴の一つである、compositionAPIを活かしきれなかった。
   ("interfaceの箇所について、適切なloaderを入れよ"、とのエラーが解決できなかったため)
