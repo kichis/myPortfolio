@@ -27,15 +27,11 @@
 - 通常のJSのDOM取得方法(idやclassによる方法)は使えず、あまり使う必要もないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
   DOM `ref="pages"`  
   script  
-  `mounted() {
-        `const targetElement = this.$refs.pages
-        `this.pages = targetElement
-   `},
-- _.debounce/_.throttle(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
-  負荷の高い処理などに使う。
-- DOMの取得方法  
-
-- jQueryの書き方  
+  `mounted() {  
+        const targetElement = this.$refs.pages  
+        this.pages = targetElement  
+   },`  
+- jQueryの記述法 :  
   `import jQuery from 'jquery'
    global.jquery = jQuery
    global.$ = jQuery
@@ -47,10 +43,10 @@
        });
      }
    }`
-- router-linkでのサイト内リンクは、"hashの取得"、"hashの要素へのスクロール処理"が必要
-vuex:状態管理（データ）を助けるライブラリ。コンポーネントを超えて、 導入した方が良い場合：アプリ全体でデータを共有したい、そのデータを加工したい、データの流れがきれいになる？（変更履歴が可視化される？） 導入しなくても良い場合：コンポーネント内だけでデータを扱う
-Vueコンポーネント内のJS実装から遷移する場合は this.$router.push('/'); のように書く
-URLのパラメーターはVueコンポーネント側ではpropsで受け取れる
+- router-linkタグでのサイト内リンクは、"hashの取得"、"hashの要素へのスクロール処理"の設定が必要
+- コンポーネント遷移(by script) : `this.$router.push('/')`
+- `.debounce` / `.throttle`(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
+  負荷の高い処理などに利用する。
 
 __第一階層のディレクトリの役割(雑に)__
 - dist : デフォルトの公開ディレクトリ(index.htmlがあるフォルダ)
@@ -76,7 +72,7 @@ __v- ディレクティブ__
     1. src属性にベタ打ち -> 画像パスはbase64でエンコードして出力される  
     2. v-bind使用 -> base64エンコードではなくそのままの文字列が出力される = 画像が表示されない  
        => dataプロパティ内の記述を、 __`require(画像パス)`__ とする (= これはベタ打ちの場合に裏側でなされている処理と同じ)  
-          \[g]該当画像ファイルがない場合、エラーになる
+          \[o]該当画像ファイルがない場合、エラーになる
 - `<templete v-if="条件式">要素</templete>` : 条件式の真偽で要素を描画する/しない。
 - v-html : データをHTMLとして変換して出力
 - v-model : formタグ関係の双方向データバインディング  
@@ -87,8 +83,8 @@ __export default内__
   - export default外のJS変数をexport default内で使う場合は、dataプロパティに宣言？する。  
     プロパティ名 : JS変数名
   - dataプロパティの配列の要素に代入する :  
-    \[no] `x[0] = "hoge"` => リアクティブな動作にならない  
-    \[yes] `x.splice(0, 1, "hoge")`  
+    \[x] `x[0] = "hoge"` => リアクティブな動作にならない  
+    \[o] `x.splice(0, 1, "hoge")`  
 - methods : 関数。 __再描画が起きるたびに"常に"関数を実行__ する。  
 - computed : 依存関係にあるリアクティブな __データが変化した時に"だけ"__ 、自動で算出される。  
   (= データが変化しないタイミングでアクセスしても以前の算出結果を返すだけ)
@@ -101,24 +97,29 @@ __export default内__
   => __filtersはVue3で廃止！！__
 - transition : __DOMの"生成・消滅に伴って"__ アニメーションを付けられる機能。要素が複数個ある場合は、transition-group。
 
-__Composition API__
-[参照](https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)
-- TypeScriptのサポート
-- ロジックの再利用の難しさ
-- アプリケーションが巨大になると、コードの把握が難しくなる
-ver2までのVueが抱えていた、これらの問題を解決する。  
+__vuex__  
+: 状態管理（データ）を助けるライブラリ。コンポーネントを超えて、  
+  - 導入した方が良い場合 ： アプリ全体でデータを共有したい、そのデータを加工したい、データの流れがきれいになる？（変更履歴が可視化される？） 
+  - 導入しなくても良い場合：コンポーネント内だけでデータを扱う
 
+__Composition API__  
+[こちら]を参照(https://qiita.com/azukiazusa/items/1a7e5849a04c22951e97)  
 `<script lang="ts">
 import { defineComponent } from 'vue'
-
 export default defineComponent({})
-</script>`
+</script>`  
+Vue2での以下の問題点を解決する  
+- TypeScriptのサポート
+- ロジックの再利用の難しさ
+- アプリケーションが巨大になると、コードの把握が難しくなる  
 
-- data => reactive(オブジェクトとして宣言、参照) / ref(単一の変数として宣言できる、templete以外から参照する時は".value"を付ける) : リアクティブなデータを格納する２形態
+
+export default内のプロパティ
+- data => リアクティブなデータを格納する２形態 : reactive(オブジェクトとして宣言、参照) / ref(単一の変数として宣言できる、templete以外から参照する時は".value"を付ける) 　
 - components・props => 以前と同じ
 - date・methods・computed・ライフサイクルメソッド => 全てsetupメソッドの中に記述、templete内で使うものだけreturn  
-  (○)"this"が不要になった = アロー関数が使える  
-  (○)returnで使用できる値を明示することで、データのアクセス方法を
+  \[o] "this"が不要になった = アロー関数が使える  
+  \[o] returnで使用できる値を明示することで、データのアクセスを管理できる  
     - methods => JSの関数と同じ
     - computed => computed()で囲む
 - __関数をどこのコンポーネントでも利用可能な形に切り分けできる__
@@ -126,57 +127,35 @@ export default defineComponent({})
 __Vue3から追加された機能__
 - templete直下の要素が複数でも可
 - teleportタグ : このタグで囲んだコンポーネントを、toで指定した場所に動的にレンダリングできる
-- filterプロパティ 廃止
-
+- filterプロパティ 廃止  
 
 __その他__
-- Homeのカルーセルに関しては、[こちら](https://zenn.dev/kazuwombat/articles/fea3428a0b888c8fb3ac)を参照させてもらいました。(ありがとうございます！)
+- カルーセルに関しては、[こちら](https://zenn.dev/kazuwombat/articles/fea3428a0b888c8fb3ac)を参考にさせてもらいました。
 
+##### その他
 __JS__
-- `element.closest(".card")` // elementの祖先要素のうち、class="card"のものを探す
+- `element.closest(".hoge")` // elementの祖先要素のうち、class="hoge"のものを探す
 - `element.getBoundingClientRect()` // elementの「ビューポート(画面内)」における位置を取得
 - `element.getBoundingClientRect().top` // 画面の上端から、要素の上端までの距離
 - `element.getBoundingClientRect().top + window.pageYOffset` // 「ページ全体」における位置を取得
-- noop : 空の関数。 = no operation = function(){}
+- noop : 空の関数 = no operation = function(){}  
 
 __CSS__
 - clip-path : 要素の表示をくり抜く(orマスクする)ことができる
 - transform : 変形
-- transition : 変化の仕方
-- 他、アニメーションするには、@keyframesやanimationなど。
+- transition : 変化の仕方  
+  他、アニメーションするには、@keyframesやanimationなど。  
+
+__VScode__
+option + comm + 上下 : 複数行選択
+option + <- / -> : そのまとまりの区切りまで  
 
 __other__
 - エイリアス(alias) : 別名、ショートカット 
 - 相対パスより絶対パス - 記述ファイルの設置場所を変えても有効だから。
-- パスの＠/ = src/  
-  : webpackのコンフィグレーションオプションとして、webpack.config.jsのresolveにエイリアスとして登録されている。Vueに限らない。(パスの中で".vue"拡張子が不要なのも、このオプションによるものらしい。[出典](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack))
-
-__vs code__
-
-option + comm + 上下 : 複数行選択
-option + <- / -> : 区切りまで
-- 慣れてないからか、どことどこがバインドされているのか追いきれず、思いがけないところで繋がっていたりする。田舎の人間関係みたいだ。
-
-- いろんなAPI
-- test code
-- オブジェクト指向のマスター(わかりやすい、汎用性のあるコーディング)
-検索機能(user/tag)
-処理完了後のコメント表示
-NGワードを含む投稿の規制
-home.php 新しい記事に"new!"をつける
-home.php 各投稿のコメント数も表示
-コメントをコメントの投稿者が削除できるようにする
-edit_users.php バリデーションに引っ掛かった場合、入力した情報が再度表示される
-ボタンの押下回数でイベントが起きる（サイトも文字フォントが変わるとか、悲鳴、怖い画像）
-オブジェクト指向を活用したコーディング
-処理完了後のコメント表示
-やってみたいこと
-ソルトを使ったpassw保存や、ブラウザ側でハッシュ化するpassw保存方法
-
-v-on : eventを使う時、
-- event用のdataプロパティを作成し、method内でそのプロパティに代入する
-eventだけであれば、function(event)
-他の引数もあればfunction($event, 他の引数)
+- パスにおける "＠/" = "src/"    
+  : webpackのコンフィグレーションオプションとして、webpack.config.jsのresolveにエイリアスとして登録されている。Vueに限らない。  
+    (パスで".vue"拡張子が不要なのも、このオプションによるものらしい。[出典](https://stackoverflow.com/questions/42749973/es6-import-using-at-sign-in-path-in-a-vue-js-project-using-webpack))
 
 ## 反省
 - [good] Vue3に挑戦した事で、製作しながらVue2からの変更点を知ることができた。
