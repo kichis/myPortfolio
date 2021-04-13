@@ -35,17 +35,19 @@
   },
   ```  
 - jQueryの記述法 :  
-  `import jQuery from 'jquery'`
-   `global.jquery = jQuery`
-   global.$ = jQuery
-   window.$ = window.jQuery = require('jquery')
-   export default {
-     mounted:function(){
-       jQuery(function ($) {
-         ここにjQueryの処理を書く
-       });
-     }
-   }`
+  ```
+  import jQuery from 'jquery'  
+  global.jquery = jQuery  
+  global.$ = jQuery
+  window.$ = window.jQuery = require('jquery')
+  export default {
+    mounted:function(){
+      jQuery(function ($) {
+        ここにjQueryの処理を書く
+      });
+    }
+  }
+  ```
 - router-linkタグでのサイト内リンクは、"hashの取得"、"hashの要素へのスクロール処理"の設定が必要
 - コンポーネント遷移(by script) : `this.$router.push('/')`
 - `.debounce` / `.throttle`(lodash関数)などで、どのくらいの頻度で処理をすべきかを設定することができる。  
