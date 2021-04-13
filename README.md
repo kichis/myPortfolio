@@ -24,16 +24,19 @@
 ## 学んだこと
 ##### Vue.js
 - HTMLへの出力: {{ プロパティ名 }}
-- 通常のJSのDOM取得方法(idやclassによる方法)は使えず、あまり使う必要もないが、使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。
+- 通常のJSのDOM取得方法(idやclassによる方法)は使えず、あまり使う必要もないが、  
+  使いたい場合は、el(templeteのルート要素を取得)やref(個別に要素を取得)を使用する。  
   DOM `ref="pages"`  
   script  
-  `mounted() {  
-        const targetElement = this.$refs.pages  
-        this.pages = targetElement  
-   },`  
+  ```
+  mounted() {  
+    const targetElement = this.$refs.pages`  
+    this.pages = targetElement  
+  },
+  ```  
 - jQueryの記述法 :  
-  `import jQuery from 'jquery'
-   global.jquery = jQuery
+  `import jQuery from 'jquery'`
+   `global.jquery = jQuery`
    global.$ = jQuery
    window.$ = window.jQuery = require('jquery')
    export default {
