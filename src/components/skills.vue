@@ -54,6 +54,7 @@
                 </div>
 
                 <div class="pt-5">
+                    <!-- テスト -->
                     <h4>Other</h4>
                     <table class="table table-borderless mx-auto">
                         <tr class="border-top">                            
