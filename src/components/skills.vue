@@ -56,7 +56,10 @@
                 <div class="pt-5">
                     <h4>Other</h4>
                     <table class="table table-borderless mx-auto">
-                        <tr class="border-top">
+                        <tr class="border-top">                            
+                            <td class="text-center" colspan="2">基本情報技術者試験</td>
+                        </tr>
+                        <tr>
                             <td class="text-right pr-3" width="50%">TOEIC</td>
                             <td class="text-left pl-3">805点</td>
                         </tr>
