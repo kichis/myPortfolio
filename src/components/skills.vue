@@ -60,6 +60,7 @@
 
         <div class="pt-5">
           <!-- テスト -->
+          <!-- テスト２ -->
           <h4>Other</h4>
           <table class="table table-borderless mx-auto">
             <tr class="border-top">
