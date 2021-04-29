@@ -152,6 +152,18 @@ __CSS__
 - transform : 変形
 - transition : 変化の仕方  
   他、アニメーションするには、@keyframesやanimationなど。  
+  
+__Netlify__
+- SPAで遷移した後のページをリロードすると404になる  
+  解決方法 : レポジトリのルートに "netlify.toml" ファイルを作成してリダイレクトの設定をする  
+            ```
+            [[redirects]]
+            from = "/*"
+            to = "/index.html"
+            status = 200
+            ```
+            (※デプロイするディレクトリに"\_redirects"ファイルを作成し、`/*    /index.html   200`の記述をすればよい、というサイトが多かったが、リダイレクトできず。)  
+  [参考](https://kapi-travel.com/programing/reactspa-x-netlify%E3%81%A7%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%83%AA%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%88%E3%83%9A%E3%83%BC%E3%82%B8%E9%81%B7%E7%A7%BB%EF%BC%89%E3%81%99%E3%82%8B%E3%81%A8404/)  
 
 __other__
 - エイリアス(alias) : 別名、ショートカット 
